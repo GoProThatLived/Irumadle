@@ -3,66 +3,73 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Custom Multi-Category Guessing Game</title>
+    <title>Custom Wordle Game</title>
     <style>
         :root {
             --color-correct: #6aaa64;
             --color-partial: #c9b458;
             --color-incorrect: #787c7e;
             --color-bg: #121213;
-            --color-card-bg: #1e1e1f;
+            --color-surface: #1a1a1b;
             --color-text: #ffffff;
             --color-border: #3a3a3c;
         }
 
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
             background-color: var(--color-bg);
             color: var(--color-text);
-            margin: 0;
-            padding: 20px;
             display: flex;
             flex-direction: column;
             align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        header {
+            margin-bottom: 20px;
+            text-align: center;
         }
 
         h1 {
-            margin-bottom: 5px;
-        }
-
-        .subtitle {
-            color: #818384;
-            margin-bottom: 25px;
-            font-size: 0.95rem;
-            text-align: center;
+            font-size: 2.5rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
         }
 
         .game-container {
             width: 100%;
-            max-width: 900px;
+            max-width: 1000px;
             display: flex;
             flex-direction: column;
             gap: 20px;
         }
 
-        /* Controls / Search Box */
-        .search-container {
+        /* Search Dropdown Section */
+        .search-section {
             position: relative;
             width: 100%;
-            max-width: 400px;
+            max-width: 500px;
             margin: 0 auto;
         }
 
         .search-input {
             width: 100%;
             padding: 12px 16px;
-            background-color: var(--color-card-bg);
+            background-color: var(--color-surface);
             border: 2px solid var(--color-border);
             border-radius: 8px;
             color: var(--color-text);
             font-size: 1rem;
-            box-sizing: border-box;
             outline: none;
+            transition: border-color 0.2s;
         }
 
         .search-input:focus {
@@ -74,9 +81,8 @@
             top: 100%;
             left: 0;
             right: 0;
-            background-color: var(--color-card-bg);
+            background-color: var(--color-surface);
             border: 1px solid var(--color-border);
-            border-top: none;
             border-radius: 0 0 8px 8px;
             max-height: 200px;
             overflow-y: auto;
@@ -88,62 +94,68 @@
         .dropdown-item {
             padding: 10px 16px;
             cursor: pointer;
-            border-bottom: 1px solid #2a2a2b;
-        }
-
-        .dropdown-item:last-child {
-            border-bottom: none;
+            transition: background-color 0.2s;
         }
 
         .dropdown-item:hover {
-            background-color: #2a2a2b;
+            background-color: var(--color-border);
         }
 
-        /* Table Grid Design */
+        /* Grid Headers */
         .grid-header {
             display: grid;
-            grid-template-columns: repeat(6, 1fr);
+            grid-template-columns: 60px 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
             gap: 8px;
+            margin-bottom: 8px;
             font-weight: bold;
-            text-align: center;
-            border-bottom: 2px solid var(--color-border);
-            padding-bottom: 8px;
-            font-size: 0.9rem;
             text-transform: uppercase;
+            font-size: 0.8rem;
             letter-spacing: 0.5px;
-            color: #b0b3b5;
+            text-align: center;
         }
 
-        .guesses-container {
+        /* Grid Row Layout */
+        .guess-grid {
             display: flex;
             flex-direction: column;
             gap: 8px;
-            margin-top: 8px;
-            min-height: 50px;
         }
 
         .guess-row {
             display: grid;
-            grid-template-columns: repeat(6, 1fr);
+            grid-template-columns: 60px 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
             gap: 8px;
-            animation: flipIn 0.5s ease forward;
         }
 
         .cell {
-            background-color: var(--color-card-bg);
-            border: 1px solid var(--color-border);
-            border-radius: 4px;
-            min-height: 60px;
+            aspect-ratio: 1 / 1;
             display: flex;
             flex-direction: column;
-            justify-content: center;
             align-items: center;
-            text-align: center;
-            padding: 5px;
+            justify-content: center;
+            background-color: var(--color-surface);
+            border: 2px solid var(--color-border);
+            font-weight: bold;
             font-size: 0.95rem;
-            font-weight: 600;
-            box-sizing: border-box;
+            text-align: center;
+            padding: 4px;
+            border-radius: 4px;
+            overflow: hidden;
+            text-overflow: ellipsis;
             word-break: break-word;
+        }
+
+        .cell.image-cell {
+            padding: 0;
+            background-color: transparent;
+            border-color: transparent;
+        }
+
+        .cell img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 4px;
         }
 
         .cell.correct {
@@ -162,265 +174,187 @@
         }
 
         .arrow {
-            font-size: 1.2rem;
+            font-size: 0.8rem;
             margin-top: 2px;
         }
 
-        .game-status {
-            text-align: center;
-            font-size: 1.3rem;
-            font-weight: bold;
-            margin-top: 15px;
-            min-height: 30px;
-        }
-
-        .reset-btn {
-            display: block;
-            margin: 15px auto 0 auto;
-            padding: 10px 20px;
-            background-color: #56a0de;
-            color: white;
-            border: none;
-            border-radius: 6px;
-            font-size: 1rem;
-            font-weight: bold;
-            cursor: pointer;
+        .win-message {
             display: none;
-        }
-
-        .reset-btn:hover {
-            background-color: #428bca;
-        }
-
-        @keyframes flipIn {
-            0% { transform: rotateX(-90deg); opacity: 0; }
-            100% { transform: rotateX(0deg); opacity: 1; }
-        }
-
-        /* Mobile Responsive adjustments */
-        @media (max-width: 600px) {
-            body { padding: 10px; }
-            .grid-header { font-size: 0.7rem; gap: 4px; }
-            .guess-row { gap: 4px; }
-            .cell { font-size: 0.75rem; min-height: 50px; padding: 2px; }
-            .arrow { font-size: 0.9rem; }
+            text-align: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--color-correct);
+            margin: 20px 0;
         }
     </style>
 </head>
 <body>
 
-    <h1>Category Wordle</h1>
-    <div class="subtitle">Guess the mystery item based on its attributes!</div>
+    <header>
+        <h1>Category Wordle</h1>
+    </header>
 
     <div class="game-container">
-        <!-- Search & Filter Dropdown Area -->
-        <div class="search-container">
-            <input type="text" id="searchBox" class="search-input" placeholder="Type or click to search items..." autocomplete="off">
+        <!-- Search Section -->
+        <div class="search-section">
+            <input type="text" id="searchInput" class="search-input" placeholder="Search and guess...">
             <div id="dropdownMenu" class="dropdown-menu"></div>
         </div>
 
-        <!-- Feedback Messages -->
-        <div id="gameStatus" class="game-status"></div>
-        <button id="resetBtn" class="reset-btn">Play Again</button>
+        <div id="winMessage" class="win-message">🎉 You guessed it right! 🎉</div>
 
-        <!-- Game Board Grid -->
+        <!-- Guess Grid Area -->
         <div>
+            <!-- Grid Column Headers -->
             <div class="grid-header">
-                <div>Category 1<br>(Text)</div>
-                <div>Category 2<br>(Number)</div>
-                <div>Category 3<br>(Text)</div>
-                <div>Category 4<br>(Text)</div>
-                <div>Category 5<br>(Multi / Split)</div>
-                <div>Category 6<br>(Number)</div>
+                <div>Pic</div>
+                <div>Name</div>
+                <div>New Text</div>
+                <div>Cat 1</div>
+                <div>Cat 2 (#)</div>
+                <div>Cat 3</div>
+                <div>Cat 4 (/)</div>
+                <div>Cat 5 (#)</div>
             </div>
-            <div id="guessesContainer" class="guesses-container">
-                <!-- Rows will be injected here dynamically via JavaScript -->
+            
+            <div id="guessGrid" class="guess-grid">
+                <!-- User guesses will be dynamically appended here -->
             </div>
         </div>
     </div>
 
     <script>
-        // --- DATASET CONFIGURATION ---
-        // Change these options to fit your specific game topic (e.g., Pokémon, Sports Players, Countries, Cars).
+        // Sample Pool of Items
+        // Format: [ImageURL, TargetName, NewTextVal, Cat1Val, Cat2Num, Cat3Val, Cat4Delimited, Cat5Num]
         const itemPool = [
-            { name: "Alpha Item",   cat1: "Red",    cat2: 150,  cat3: "West",  cat4: "Solid",  cat5: "Fire/Flying/Dragon", cat6: 2010 },
-            { name: "Beta Item",    cat1: "Blue",   cat2: 85,   cat3: "East",  cat4: "Liquid", cat5: "Water/Ice",          cat6: 2015 },
-            { name: "Gamma Item",   cat1: "Green",  cat2: 210,  cat3: "North", cat4: "Gas",    cat5: "Grass/Poison/Water", cat6: 2008 },
-            { name: "Delta Item",   cat1: "Red",    cat2: 120,  cat3: "South", cat4: "Solid",  cat5: "Electric/Steel",     cat6: 2022 },
-            { name: "Epsilon Item", cat1: "Yellow", cat2: 45,   cat3: "West",  cat4: "Liquid", cat5: "Flying/Electric",    cat6: 1999 },
-            { name: "Zeta Item",    cat1: "Blue",   cat2: 300,  cat3: "North", cat4: "Solid",  cat5: "Dragon/Fire/Rock",   cat6: 2026 }
+            ["https://picsum.photos/100?random=1", "Alpha", "Bonus A", "Red", 150, "North", "Fire/Water", 10],
+            ["https://picsum.photos/100?random=2", "Bravo", "Bonus B", "Blue", 230, "South", "Water/Ice", 25],
+            ["https://picsum.photos/100?random=3", "Charlie", "Bonus C", "Green", 85, "East", "Grass/Flying", 40],
+            ["https://picsum.photos/100?random=4", "Delta", "Bonus D", "Yellow", 410, "West", "Electric/Steel", 12],
+            ["https://picsum.photos/100?random=5", "Echo", "Bonus E", "Red", 300, "North", "Fire/Flying", 55]
         ];
 
-        let secretItem = null;
-        let guessedItems = [];
+        // System randomly picks a winning target item
+        const targetSolution = itemPool[Math.floor(Math.random() * itemPool.length)];
+        
+        // Element references
+        const searchInput = document.getElementById('searchInput');
+        const dropdownMenu = document.getElementById('dropdownMenu');
+        const guessGrid = document.getElementById('guessGrid');
+        const winMessage = document.getElementById('winMessage');
+
+        let remainingItems = [...itemPool];
         let gameOver = false;
 
-        // --- DOM ELEMENTS ---
-        const searchBox = document.getElementById("searchBox");
-        const dropdownMenu = document.getElementById("dropdownMenu");
-        const guessesContainer = document.getElementById("guessesContainer");
-        const gameStatus = document.getElementById("gameStatus");
-        const resetBtn = document.getElementById("resetBtn");
-
-        // Initialize / Start Game
-        function initGame() {
-            // Select a random target item
-            secretItem = itemPool[Math.floor(Math.random() * itemPool.length)];
-            guessedItems = [];
-            gameOver = false;
-            
-            // Clear UI elements
-            guessesContainer.innerHTML = "";
-            gameStatus.innerHTML = "";
-            searchBox.value = "";
-            searchBox.disabled = false;
-            resetBtn.style.display = "none";
-            
-            // Console logging answer for easier developer testing
-            console.log("Secret Target Answer:", secretItem.name);
-        }
-
-        // --- DROPDOWN & FILTER LOGIC ---
-        function showDropdown() {
-            if (gameOver) return;
-            const filterText = searchBox.value.toLowerCase();
-            dropdownMenu.innerHTML = "";
-
-            // Filter item pool based on search input and exclude already guessed choices
-            const filtered = itemPool.filter(item => 
-                item.name.toLowerCase().includes(filterText) && !guessedItems.includes(item.name)
-            );
-
-            if (filtered.length === 0) {
-                dropdownMenu.style.display = "none";
+        // Render Dropdown options filtering dynamically
+        function updateDropdown(filterText) {
+            dropdownMenu.innerHTML = '';
+            if (!filterText || gameOver) {
+                dropdownMenu.style.display = 'none';
                 return;
             }
 
-            filtered.forEach(item => {
-                const div = document.createElement("div");
-                div.className = "dropdown-item";
-                div.textContent = item.name;
-                div.addEventListener("click", () => {
-                    submitGuess(item);
-                    dropdownMenu.style.display = "none";
-                    searchBox.value = "";
+            const cleanFilter = filterText.toLowerCase();
+            const matched = remainingItems.filter(item => item[1].toLowerCase().includes(cleanFilter));
+
+            if (matched.length === 0) {
+                dropdownMenu.style.display = 'none';
+                return;
+            }
+
+            matched.forEach(item => {
+                const div = document.createElement('div');
+                div.className = 'dropdown-item';
+                div.textContent = item[1]; // Use item name
+                div.addEventListener('click', () => {
+                    handleGuess(item);
+                    searchInput.value = '';
+                    dropdownMenu.style.display = 'none';
                 });
                 dropdownMenu.appendChild(div);
             });
 
-            dropdownMenu.style.display = "block";
+            dropdownMenu.style.display = 'block';
         }
 
-        // Event listeners for searching
-        searchBox.addEventListener("input", showDropdown);
-        searchBox.addEventListener("focus", showDropdown);
+        // Processing a valid choice selection
+        function handleGuess(guessItem) {
+            // Remove guessed item from subsequent dropdown lists
+            remainingItems = remainingItems.filter(item => item[1] !== guessItem[1]);
 
-        // Close dropdown when clicking outside
-        document.addEventListener("click", (e) => {
-            if (!searchBox.contains(e.target) && !dropdownMenu.contains(e.target)) {
-                dropdownMenu.style.display = "none";
-            }
-        });
+            const row = document.createElement('div');
+            row.className = 'guess-row';
 
-        // --- GUESS EVALUATION LOGIC ---
-        function submitGuess(guessedItem) {
-            guessedItems.push(guessedItem.name);
-            
-            const row = document.createElement("div");
-            row.className = "guess-row";
+            // 0. Image Slot Box
+            const imgCell = document.createElement('div');
+            imgCell.className = 'cell image-cell';
+            const img = document.createElement('img');
+            img.src = guessItem[0];
+            img.alt = guessItem[1];
+            imgCell.appendChild(img);
+            row.appendChild(imgCell);
 
-            // Category 1: Standard Text Match
-            createCell(row, guessedItem.cat1, secretItem.cat1, "text");
-
-            // Category 2: Number Match with High/Low Indicator Arrows
-            createCell(row, guessedItem.cat2, secretItem.cat2, "number");
-
-            // Category 3: Standard Text Match
-            createCell(row, guessedItem.cat3, secretItem.cat3, "text");
-
-            // Category 4: Standard Text Match
-            createCell(row, guessedItem.cat4, secretItem.cat4, "text");
-
-            // Category 5: Multi-Value "/" Split Partial Match Evaluation
-            createCell(row, guessedItem.cat5, secretItem.cat5, "multi");
-
-            // Category 6: Number Match with High/Low Indicator Arrows
-            createCell(row, guessedItem.cat6, secretItem.cat6, "number");
-
-            guessesContainer.appendChild(row);
-
-            // Win / Lose evaluation check
-            if (guessedItem.name === secretItem.name) {
-                gameStatus.textContent = "🎉 Congratulations! You guessed correctly!";
-                gameStatus.style.color = "var(--color-correct)";
-                endGame();
-            } else if (guessedItems.length >= 6) {
-                gameStatus.textContent = `😢 Game over! The correct answer was: ${secretItem.name}`;
-                gameStatus.style.color = "#ff4d4d";
-                endGame();
-            }
-        }
-
-        // Build individual cells dynamically checking formatting match types
-        function createCell(rowElement, guessVal, correctVal, type) {
-            const cell = document.createElement("div");
-            cell.className = "cell";
-
-            if (type === "text") {
-                cell.textContent = guessVal;
-                if (guessVal === correctVal) {
-                    cell.classList.add("correct");
-                } else {
-                    cell.classList.add("incorrect");
-                }
-            } 
-            else if (type === "number") {
-                cell.textContent = guessVal;
-                if (guessVal === correctVal) {
-                    cell.classList.add("correct");
-                } else {
-                    cell.classList.add("incorrect");
-                    const arrowSpan = document.createElement("span");
-                    arrowSpan.className = "arrow";
-                    // Arrow points UP if correct value is higher than guess value, otherwise DOWN
-                    arrowSpan.textContent = correctVal > guessVal ? " ⬆️" : " ⬇️";
-                    cell.appendChild(arrowSpan);
-                }
-            } 
-            else if (type === "multi") {
-                cell.textContent = guessVal;
+            // Process columns sequentially: 1 (Name), 2 (New Text), 3 (Cat1), 4 (Cat2 #), 5 (Cat3), 6 (Cat4 /), 7 (Cat5 #)
+            for (let i = 1; i < guessItem.length; i++) {
+                const cell = document.createElement('div');
+                cell.className = 'cell';
                 
-                if (guessVal === correctVal) {
-                    cell.classList.add("correct");
-                } else {
-                    // Extract items by separating via the forward slash delimiter
-                    const guessParts = guessVal.split("/").map(s => s.trim().toLowerCase());
-                    const correctParts = correctVal.split("/").map(s => s.trim().toLowerCase());
-                    
-                    // Check if there is an overlapping partial value match present
-                    const hasOverlap = guessParts.some(part => correctParts.includes(part));
+                const guessVal = guessItem[i];
+                const targetVal = targetSolution[i];
+
+                cell.textContent = guessVal;
+
+                // Absolute string equality check
+                if (guessVal === targetVal) {
+                    cell.classList.add('correct');
+                } 
+                // Number check with directions indicators (for indices 4 and 7)
+                else if (i === 4 || i === 7) {
+                    cell.classList.add('incorrect');
+                    const arrowSpan = document.createElement('span');
+                    arrowSpan.className = 'arrow';
+                    arrowSpan.textContent = guessVal < targetVal ? " ⬆️" : " ⬇️";
+                    cell.appendChild(arrowSpan);
+                } 
+                // Delimited values split check (for index 6)
+                else if (i === 6) {
+                    const guessParts = String(guessVal).split('/');
+                    const targetParts = String(targetVal).split('/');
+                    const hasOverlap = guessParts.some(part => targetParts.includes(part));
                     
                     if (hasOverlap) {
-                        cell.classList.add("partial");
+                        cell.classList.add('partial');
                     } else {
-                        cell.classList.add("incorrect");
+                        cell.classList.add('incorrect');
                     }
+                } 
+                // Standard un-matched strings
+                else {
+                    cell.classList.add('incorrect');
                 }
+
+                row.appendChild(cell);
             }
 
-            rowElement.appendChild(cell);
+            guessGrid.appendChild(row);
+
+            // Win evaluation check
+            if (guessItem[1] === targetSolution[1]) {
+                gameOver = true;
+                winMessage.style.display = 'block';
+                searchInput.disabled = true;
+            }
         }
 
-        function endGame() {
-            gameOver = true;
-            searchBox.disabled = true;
-            resetBtn.style.display = "block";
-        }
+        // Operational Event Listeners
+        searchInput.addEventListener('input', (e) => updateDropdown(e.target.value));
 
-        resetBtn.addEventListener("click", initGame);
-
-        // Run game logic on startup initialization
-        initGame();
+        // Click outside closes dropdown menu
+        document.addEventListener('click', (e) => {
+            if (!searchInput.contains(e.target) && !dropdownMenu.contains(e.target)) {
+                dropdownMenu.style.display = 'none';
+            }
+        });
     </script>
 </body>
 </html>
