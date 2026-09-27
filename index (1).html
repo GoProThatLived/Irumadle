@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Category Wordle</title>
+    <style>
+        :root {
+            --correct-color: #6abc64;
+            --incorrect-color: #ff6b6b;
+            --border-color: #ccc;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f9f9f9;
+        }
+        h1 {
+            text-align: center;
+        }
+        .game-container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        .guess-row {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 10px;
+            padding: 10px;
+            background: white;
+            border: 1px solid var(--border-color);
+            border-radius: 5px;
+        }
+        .guess-image {
+            width: 60px;
+            height: 60px;
+            object-fit: cover;
+            border-radius: 4px;
+            border: 1px dashed #999;
+            background-color: #eaeaea;
+        }
+        .guess-field {
+            padding: 8px;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            font-size: 14px;
+        }
+        .guess-name {
+            flex: 1;
+            min-width: 120px;
+        }
+        .category-field {
+            flex: 1;
+        }
+        .correct {
+            background-color: var(--correct-color) !important;
+            color: white;
+        }
+        .btn {
+            display: block;
+            margin: 20px auto;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+<div class="game-container">
+    <h1>Category Wordle</h1>
+    <p style="text-align:center;">Guess the mystery item based on its attributes!</p>
+
+    <div id="game-board">
+        <!-- Rows will be generated here -->
+    </div>
+
+    <button class="btn" onclick="resetGame()">Play Again</button>
+</div>
+
+<script>
+    // Mystery target item data (Modify this object to change the answer)
+    const targetItem = {
+        name: "Mystery Item",
+        imageSrc: "https://via.placeholder.com/60", // Replace with your GitHub image path later
+        cat1: "Text Value",
+        cat2: 100,
+        cat3: "Text Value",
+        cat4: "Text Value",
+        cat5: "Split Value",
+        cat6: 50
+    };
+
+    function createGuessRow() {
+        const board = document.getElementById('game-board');
+        const row = document.createElement('div');
+        row.className = 'guess-row';
+
+        // 1. Image on the far left (Editable source in targetItem)
+        const img = document.createElement('img');
+        img.className = 'guess-image';
+        img.src = targetItem.imageSrc;
+        img.alt = "Guess Hint";
+        row.appendChild(img);
+
+        // 2. New Name Field (Turns green when correct)
+        const nameInput = document.createElement('input');
+        nameInput.type = 'text';
+        nameInput.className = 'guess-field guess-name';
+        nameInput.placeholder = 'Guess Name';
+        nameInput.addEventListener('change', function() {
+            if (this.value.trim().toLowerCase() === targetItem.name.toLowerCase()) {
+                this.classList.add('correct');
+            } else {
+                this.classList.remove('correct');
+            }
+        });
+        row.appendChild(nameInput);
+
+        // 3. Category 1 (Text)
+        row.appendChild(createInputField('text', 'Category 1 (Text)', 'cat1'));
+        
+        // 4. Category 2 (Number)
+        row.appendChild(createInputField('number', 'Category 2 (Num)', 'cat2'));
+        
+        // 5. Category 3 (Text)
+        row.appendChild(createInputField('text', 'Category 3 (Text)', 'cat3'));
+        
+        // 6. Category 4 (Text)
+        row.appendChild(createInputField('text', 'Category 4 (Text)', 'cat4'));
+        
+        // 7. Category 5 (Multi / Split)
+        row.appendChild(createInputField('text', 'Category 5 (Split)', 'cat5'));
+        
+        // 8. Category 6 (Number)
+        row.appendChild(createInputField('number', 'Category 6 (Num)', 'cat6'));
+
+        board.appendChild(row);
+    }
+
+    function createInputField(type, placeholder, targetKey) {
+        const input = document.createElement('input');
+        input.type = type;
+        input.className = 'guess-field category-field';
+        input.placeholder = placeholder;
+        
+        input.addEventListener('change', function() {
+            if (this.value.trim().toLowerCase() === String(targetItem[targetKey]).toLowerCase()) {
+                this.classList.add('correct');
+            } else {
+                this.classList.remove('correct');
+            }
+        });
+        
+        return input;
+    }
+
+    function resetGame() {
+        document.getElementById('game-board').innerHTML = '';
+        // Generate initial row for playing
+        createGuessRow();
+    }
+
+    // Initialize game on load
+    createGuessRow();
+</script>
+
+</body>
+</html>
