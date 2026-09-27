@@ -207,14 +207,14 @@
         <div>
             <!-- Grid Column Headers -->
             <div class="grid-header">
-                <div>Pic</div>
+                <div></div>
                 <div>Name</div>
-                <div>New Text</div>
-                <div>Cat 1</div>
-                <div>Cat 2 (#)</div>
-                <div>Cat 3</div>
-                <div>Cat 4 (/)</div>
-                <div>Cat 5 (#)</div>
+                <div>Race</div>
+                <div>Hair Color</div>
+                <div>Age</div>
+                <div>Bloodline Magic</div>
+                <div>Affiliation</div>
+                <div>Rank</div>
             </div>
             
             <div id="guessGrid" class="guess-grid">
@@ -227,11 +227,11 @@
         // Sample Pool of Items
         // Format: [ImageURL, TargetName, NewTextVal, Cat1Val, Cat2Num, Cat3Val, Cat4Delimited, Cat5Num]
         const itemPool = [
-            ["https://picsum.photos/100?random=1", "Alpha", "Bonus A", "Red", 150, "North", "Fire/Water", 10],
-            ["https://picsum.photos/100?random=2", "Bravo", "Bonus B", "Blue", 230, "South", "Water/Ice", 25],
-            ["https://picsum.photos/100?random=3", "Charlie", "Bonus C", "Green", 85, "East", "Grass/Flying", 40],
-            ["https://picsum.photos/100?random=4", "Delta", "Bonus D", "Yellow", 410, "West", "Electric/Steel", 12],
-            ["https://picsum.photos/100?random=5", "Echo", "Bonus E", "Red", 300, "North", "Fire/Flying", 55]
+            ["https://picsum.photos/100?random=1", "Suzuki Iruma", "Human", "Blue", 15, "No", "Sullivan Family/Babyls", 5.5],
+            ["https://picsum.photos/100?random=2", "Asmodeus Alice", "Demon", "Pink", 15, "No", "Asmodeus Family/Babyls", 5],
+            ["https://picsum.photos/100?random=3", "Valac Clara", "Deity", "Green", 14, "Yes", "Babyls/Valac Family", 4],
+            ["https://picsum.photos/100?random=4", "Shiida", "Artificial Demon", "Yellow", 25, "No", "The Six Fingers", 0],
+            ["https://picsum.photos/100?random=5", "Ameri Azazel", "Demoness", "Red", 16, "Yes", "Demon Border Patrol/Student Council/Babyls", 7]
         ];
 
         // System randomly picks a winning target item
