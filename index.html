@@ -3,358 +3,168 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Custom Wordle Game</title>
+    <title>Category Wordle</title>
     <style>
         :root {
-            --color-correct: #6aaa64;
-            --color-partial: #c9b458;
-            --color-incorrect: #787c7e;
-            --color-bg: #121213;
-            --color-surface: #1a1a1b;
-            --color-text: #ffffff;
-            --color-border: #3a3a3c;
+            --correct-color: #6abc64;
+            --incorrect-color: #ff6b6b;
+            --border-color: #ccc;
         }
-
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-
         body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            background-color: var(--color-bg);
-            color: var(--color-text);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            min-height: 100vh;
-            padding: 20px;
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f9f9f9;
         }
-
-        header {
-            margin-bottom: 20px;
+        h1 {
             text-align: center;
         }
-
-        h1 {
-            font-size: 2.5rem;
-            font-weight: 700;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-        }
-
         .game-container {
-            width: 100%;
             max-width: 1000px;
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-        }
-
-        /* Search Dropdown Section */
-        .search-section {
-            position: relative;
-            width: 100%;
-            max-width: 500px;
             margin: 0 auto;
         }
-
-        .search-input {
-            width: 100%;
-            padding: 12px 16px;
-            background-color: var(--color-surface);
-            border: 2px solid var(--color-border);
-            border-radius: 8px;
-            color: var(--color-text);
-            font-size: 1rem;
-            outline: none;
-            transition: border-color 0.2s;
-        }
-
-        .search-input:focus {
-            border-color: #56a0de;
-        }
-
-        .dropdown-menu {
-            position: absolute;
-            top: 100%;
-            left: 0;
-            right: 0;
-            background-color: var(--color-surface);
-            border: 1px solid var(--color-border);
-            border-radius: 0 0 8px 8px;
-            max-height: 200px;
-            overflow-y: auto;
-            z-index: 10;
-            display: none;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.5);
-        }
-
-        .dropdown-item {
-            padding: 10px 16px;
-            cursor: pointer;
-            transition: background-color 0.2s;
-        }
-
-        .dropdown-item:hover {
-            background-color: var(--color-border);
-        }
-
-        /* Grid Headers */
-        .grid-header {
-            display: grid;
-            grid-template-columns: 60px 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
-            gap: 8px;
-            margin-bottom: 8px;
-            font-weight: bold;
-            text-transform: uppercase;
-            font-size: 0.8rem;
-            letter-spacing: 0.5px;
-            text-align: center;
-        }
-
-        /* Grid Row Layout */
-        .guess-grid {
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
-        }
-
         .guess-row {
-            display: grid;
-            grid-template-columns: 60px 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
-            gap: 8px;
-        }
-
-        .cell {
-            aspect-ratio: 1 / 1;
             display: flex;
-            flex-direction: column;
             align-items: center;
-            justify-content: center;
-            background-color: var(--color-surface);
-            border: 2px solid var(--color-border);
-            font-weight: bold;
-            font-size: 0.95rem;
-            text-align: center;
-            padding: 4px;
-            border-radius: 4px;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            word-break: break-word;
+            gap: 10px;
+            margin-bottom: 10px;
+            padding: 10px;
+            background: white;
+            border: 1px solid var(--border-color);
+            border-radius: 5px;
         }
-
-        .cell.image-cell {
-            padding: 0;
-            background-color: transparent;
-            border-color: transparent;
-        }
-
-        .cell img {
-            width: 100%;
-            height: 100%;
+        .guess-image {
+            width: 60px;
+            height: 60px;
             object-fit: cover;
             border-radius: 4px;
+            border: 1px dashed #999;
+            background-color: #eaeaea;
         }
-
-        .cell.correct {
-            background-color: var(--color-correct);
-            border-color: var(--color-correct);
+        .guess-field {
+            padding: 8px;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            font-size: 14px;
         }
-
-        .cell.partial {
-            background-color: var(--color-partial);
-            border-color: var(--color-partial);
+        .guess-name {
+            flex: 1;
+            min-width: 120px;
         }
-
-        .cell.incorrect {
-            background-color: var(--color-incorrect);
-            border-color: var(--color-incorrect);
+        .category-field {
+            flex: 1;
         }
-
-        .arrow {
-            font-size: 0.8rem;
-            margin-top: 2px;
+        .correct {
+            background-color: var(--correct-color) !important;
+            color: white;
         }
-
-        .win-message {
-            display: none;
-            text-align: center;
-            font-size: 1.5rem;
-            font-weight: bold;
-            color: var(--color-correct);
-            margin: 20px 0;
+        .btn {
+            display: block;
+            margin: 20px auto;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
         }
     </style>
 </head>
 <body>
 
-    <header>
-        <h1>Category Wordle</h1>
-    </header>
+<div class="game-container">
+    <h1>Category Wordle</h1>
+    <p style="text-align:center;">Guess the mystery item based on its attributes!</p>
 
-    <div class="game-container">
-        <!-- Search Section -->
-        <div class="search-section">
-            <input type="text" id="searchInput" class="search-input" placeholder="Search and guess...">
-            <div id="dropdownMenu" class="dropdown-menu"></div>
-        </div>
-
-        <div id="winMessage" class="win-message">🎉 You guessed it right! 🎉</div>
-
-        <!-- Guess Grid Area -->
-        <div>
-            <!-- Grid Column Headers -->
-            <div class="grid-header">
-                <div>Pic</div>
-                <div>Name</div>
-                <div>New Text</div>
-                <div>Cat 1</div>
-                <div>Cat 2 (#)</div>
-                <div>Cat 3</div>
-                <div>Cat 4 (/)</div>
-                <div>Cat 5 (#)</div>
-            </div>
-            
-            <div id="guessGrid" class="guess-grid">
-                <!-- User guesses will be dynamically appended here -->
-            </div>
-        </div>
+    <div id="game-board">
+        <!-- Rows will be generated here -->
     </div>
 
-    <script>
-        // Sample Pool of Items
-        // Format: [ImageURL, TargetName, NewTextVal, Cat1Val, Cat2Num, Cat3Val, Cat4Delimited, Cat5Num]
-        const itemPool = [
-            ["https://picsum.photos/100?random=1", "Alpha", "Bonus A", "Red", 150, "North", "Fire/Water", 10],
-            ["https://picsum.photos/100?random=2", "Bravo", "Bonus B", "Blue", 230, "South", "Water/Ice", 25],
-            ["https://picsum.photos/100?random=3", "Charlie", "Bonus C", "Green", 85, "East", "Grass/Flying", 40],
-            ["https://picsum.photos/100?random=4", "Delta", "Bonus D", "Yellow", 410, "West", "Electric/Steel", 12],
-            ["https://picsum.photos/100?random=5", "Echo", "Bonus E", "Red", 300, "North", "Fire/Flying", 55]
-        ];
+    <button class="btn" onclick="resetGame()">Play Again</button>
+</div>
 
-        // System randomly picks a winning target item
-        const targetSolution = itemPool[Math.floor(Math.random() * itemPool.length)];
-        
-        // Element references
-        const searchInput = document.getElementById('searchInput');
-        const dropdownMenu = document.getElementById('dropdownMenu');
-        const guessGrid = document.getElementById('guessGrid');
-        const winMessage = document.getElementById('winMessage');
+<script>
+    // Mystery target item data (Modify this object to change the answer)
+    const targetItem = {
+        name: "Mystery Item",
+        imageSrc: "https://via.placeholder.com/60", // Replace with your GitHub image path later
+        cat1: "Text Value",
+        cat2: 100,
+        cat3: "Text Value",
+        cat4: "Text Value",
+        cat5: "Split Value",
+        cat6: 50
+    };
 
-        let remainingItems = [...itemPool];
-        let gameOver = false;
+    function createGuessRow() {
+        const board = document.getElementById('game-board');
+        const row = document.createElement('div');
+        row.className = 'guess-row';
 
-        // Render Dropdown options filtering dynamically
-        function updateDropdown(filterText) {
-            dropdownMenu.innerHTML = '';
-            if (!filterText || gameOver) {
-                dropdownMenu.style.display = 'none';
-                return;
-            }
+        // 1. Image on the far left (Editable source in targetItem)
+        const img = document.createElement('img');
+        img.className = 'guess-image';
+        img.src = targetItem.imageSrc;
+        img.alt = "Guess Hint";
+        row.appendChild(img);
 
-            const cleanFilter = filterText.toLowerCase();
-            const matched = remainingItems.filter(item => item[1].toLowerCase().includes(cleanFilter));
-
-            if (matched.length === 0) {
-                dropdownMenu.style.display = 'none';
-                return;
-            }
-
-            matched.forEach(item => {
-                const div = document.createElement('div');
-                div.className = 'dropdown-item';
-                div.textContent = item[1]; // Use item name
-                div.addEventListener('click', () => {
-                    handleGuess(item);
-                    searchInput.value = '';
-                    dropdownMenu.style.display = 'none';
-                });
-                dropdownMenu.appendChild(div);
-            });
-
-            dropdownMenu.style.display = 'block';
-        }
-
-        // Processing a valid choice selection
-        function handleGuess(guessItem) {
-            // Remove guessed item from subsequent dropdown lists
-            remainingItems = remainingItems.filter(item => item[1] !== guessItem[1]);
-
-            const row = document.createElement('div');
-            row.className = 'guess-row';
-
-            // 0. Image Slot Box
-            const imgCell = document.createElement('div');
-            imgCell.className = 'cell image-cell';
-            const img = document.createElement('img');
-            img.src = guessItem[0];
-            img.alt = guessItem[1];
-            imgCell.appendChild(img);
-            row.appendChild(imgCell);
-
-            // Process columns sequentially: 1 (Name), 2 (New Text), 3 (Cat1), 4 (Cat2 #), 5 (Cat3), 6 (Cat4 /), 7 (Cat5 #)
-            for (let i = 1; i < guessItem.length; i++) {
-                const cell = document.createElement('div');
-                cell.className = 'cell';
-                
-                const guessVal = guessItem[i];
-                const targetVal = targetSolution[i];
-
-                cell.textContent = guessVal;
-
-                // Absolute string equality check
-                if (guessVal === targetVal) {
-                    cell.classList.add('correct');
-                } 
-                // Number check with directions indicators (for indices 4 and 7)
-                else if (i === 4 || i === 7) {
-                    cell.classList.add('incorrect');
-                    const arrowSpan = document.createElement('span');
-                    arrowSpan.className = 'arrow';
-                    arrowSpan.textContent = guessVal < targetVal ? " ⬆️" : " ⬇️";
-                    cell.appendChild(arrowSpan);
-                } 
-                // Delimited values split check (for index 6)
-                else if (i === 6) {
-                    const guessParts = String(guessVal).split('/');
-                    const targetParts = String(targetVal).split('/');
-                    const hasOverlap = guessParts.some(part => targetParts.includes(part));
-                    
-                    if (hasOverlap) {
-                        cell.classList.add('partial');
-                    } else {
-                        cell.classList.add('incorrect');
-                    }
-                } 
-                // Standard un-matched strings
-                else {
-                    cell.classList.add('incorrect');
-                }
-
-                row.appendChild(cell);
-            }
-
-            guessGrid.appendChild(row);
-
-            // Win evaluation check
-            if (guessItem[1] === targetSolution[1]) {
-                gameOver = true;
-                winMessage.style.display = 'block';
-                searchInput.disabled = true;
-            }
-        }
-
-        // Operational Event Listeners
-        searchInput.addEventListener('input', (e) => updateDropdown(e.target.value));
-
-        // Click outside closes dropdown menu
-        document.addEventListener('click', (e) => {
-            if (!searchInput.contains(e.target) && !dropdownMenu.contains(e.target)) {
-                dropdownMenu.style.display = 'none';
+        // 2. New Name Field (Turns green when correct)
+        const nameInput = document.createElement('input');
+        nameInput.type = 'text';
+        nameInput.className = 'guess-field guess-name';
+        nameInput.placeholder = 'Guess Name';
+        nameInput.addEventListener('change', function() {
+            if (this.value.trim().toLowerCase() === targetItem.name.toLowerCase()) {
+                this.classList.add('correct');
+            } else {
+                this.classList.remove('correct');
             }
         });
-    </script>
+        row.appendChild(nameInput);
+
+        // 3. Category 1 (Text)
+        row.appendChild(createInputField('text', 'Category 1 (Text)', 'cat1'));
+        
+        // 4. Category 2 (Number)
+        row.appendChild(createInputField('number', 'Category 2 (Num)', 'cat2'));
+        
+        // 5. Category 3 (Text)
+        row.appendChild(createInputField('text', 'Category 3 (Text)', 'cat3'));
+        
+        // 6. Category 4 (Text)
+        row.appendChild(createInputField('text', 'Category 4 (Text)', 'cat4'));
+        
+        // 7. Category 5 (Multi / Split)
+        row.appendChild(createInputField('text', 'Category 5 (Split)', 'cat5'));
+        
+        // 8. Category 6 (Number)
+        row.appendChild(createInputField('number', 'Category 6 (Num)', 'cat6'));
+
+        board.appendChild(row);
+    }
+
+    function createInputField(type, placeholder, targetKey) {
+        const input = document.createElement('input');
+        input.type = type;
+        input.className = 'guess-field category-field';
+        input.placeholder = placeholder;
+        
+        input.addEventListener('change', function() {
+            if (this.value.trim().toLowerCase() === String(targetItem[targetKey]).toLowerCase()) {
+                this.classList.add('correct');
+            } else {
+                this.classList.remove('correct');
+            }
+        });
+        
+        return input;
+    }
+
+    function resetGame() {
+        document.getElementById('game-board').innerHTML = '';
+        // Generate initial row for playing
+        createGuessRow();
+    }
+
+    // Initialize game on load
+    createGuessRow();
+</script>
+
 </body>
 </html>
