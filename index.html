@@ -138,25 +138,18 @@
     </div>
 
     <script>
-        // Character Dataset
-       const characters = [
-    { id: 1, name: "Suzuki Iruma", age: 15, race: "Human", hairColor: "Blue", bloodlineMagic: "No", affiliation: "Sullivan Family/Babyls/Abnormal Class", rank: 5, pic: "https://placehold.co" },
-    { id: 2, name: "Asmodeus Alice", age: 15, race: "Demon", hairColor: "Pink", bloodlineMagic: "Yes", affiliation: "Babyls/Abnormal Class/Student Council", rank: 5, pic: "https://placehold.co" },
-    { id: 3, name: "Valac Clara", age: 15, race: "Demoness", hairColor: "Green", bloodlineMagic: "Yes", affiliation: "Babyls/Abnormal Class/Valac Family", rank: 4, pic: "https://placehold.co" },
-    { id: 4, name: "Azazel Ameri", age: 17, race: "Demoness", hairColor: "Orange", bloodlineMagic: "Yes", affiliation: "Babyls/Student Council", rank: 6, pic: "https://placehold.co" },
-    { id: 5, name: "Naberius Kalego", age: "Unknown", race: "Demon", hairColor: "Purple", bloodlineMagic: "Yes", affiliation: "Babyls/Faculty", rank: 8, pic: "https://placehold.co" }
-];
+        const characters = [
+            { id: 1, name: "Suzuki Iruma", age: 15, race: "Human", hairColor: "Blue", bloodlineMagic: "No", affiliation: "Sullivan Family/Babyls/Abnormal Class", rank: 5, pic: "https://placehold.co" },
+            { id: 2, name: "Asmodeus Alice", age: 15, race: "Demon", hairColor: "Pink", bloodlineMagic: "Yes", affiliation: "Babyls/Abnormal Class/Student Council", rank: 5, pic: "https://placehold.co" },
+            { id: 3, name: "Valac Clara", age: 15, race: "Demoness", hairColor: "Green", bloodlineMagic: "Yes", affiliation: "Babyls/Abnormal Class/Valac Family", rank: 4, pic: "https://placehold.co" },
+            { id: 4, name: "Azazel Ameri", age: 17, race: "Demoness", hairColor: "Orange", bloodlineMagic: "Yes", affiliation: "Babyls/Student Council", rank: 6, pic: "https://placehold.co" },
+            { id: 5, name: "Naberius Kalego", age: "Unknown", race: "Demon", hairColor: "Purple", bloodlineMagic: "Yes", affiliation: "Babyls/Faculty", rank: 8, pic: "https://placehold.co" }
+        ];
 
         let currentAnswer = null;
         let isInfiniteMode = false;
-        let gameData = JSON.parse(localStorage.getItem('irumaWordleData')) || {
-            lastPlayedDate: "",
-            lastWinDate: "",
-            playedStreak: 0,
-            winStreak: 0,
-            totalWins: 0
-        };
-
+        let gameData = JSON.parse(localStorage.getItem('irumaWordleData')) || { lastPlayedDate: "", lastWinDate: "", playedStreak: 0, winStreak: 0, totalWins: 0 };
+        
         const searchInput = document.getElementById('char-search');
         const dropdown = document.getElementById('dropdown-list');
         const guessesContainer = document.getElementById('guesses-container');
@@ -176,7 +169,7 @@
                 resetBoardLayout();
                 setupGameMode();
             });
-
+            
             nextBtn.addEventListener('click', () => {
                 if(isInfiniteMode) {
                     resetBoardLayout();
@@ -202,11 +195,11 @@
             searchInput.addEventListener('input', (e) => {
                 const value = e.target.value.toLowerCase().trim();
                 if (!value) { dropdown.classList.add('hidden'); return; }
-
+                
                 const startsWithMatches = characters.filter(c => c.name.toLowerCase().startsWith(value));
                 const containsMatches = characters.filter(c => !c.name.toLowerCase().startsWith(value) && c.name.toLowerCase().includes(value));
                 const filtered = [...startsWithMatches, ...containsMatches];
-
+                
                 dropdown.innerHTML = "";
                 if(filtered.length > 0) {
                     dropdown.classList.remove('hidden');
@@ -216,6 +209,3 @@
                         item.innerHTML = `<img class="avatar" src="${char.pic}" alt=""> <span>${char.name}</span>`;
                         item.addEventListener('click', () => {
                             handleGuessSubmission(char);
-                            searchInput.value = "";
-                            dropdown.classList.add('hidden');
-                        });
