@@ -331,28 +331,42 @@
                 cell.textContent = guessVal;
 
                 // Absolute string equality check
-                if (guessVal === targetVal) {
-                    cell.classList.add('correct');
-                } 
-                // Number check with directions indicators (for indices 4 and 7)
-                else if (i === 4 || i === 7) {
-                    cell.classList.add('incorrect');
-                    const arrowSpan = document.createElement('span');
-                    arrowSpan.className = 'arrow';
-                    arrowSpan.textContent = guessVal < targetVal ? " ⬆️" : " ⬇️";
-                    cell.appendChild(arrowSpan);
-} 
-                    // Custom Word Replacement + Arrow Calculation for Column 8
-                    else if (i === 8) {
-                        cell.classList.add('incorrect');
-
-                        // 1. Map your numbers to custom words
-                        const arcWords = {
-                        1: "Introduction Arc",
-                        2: "Temp Arc 2",
-                        3: "Temp Arc 3"
+               // 1. FIRST: Handle text formatting based on the column index
+if (i === 8) {
+    const arcWords = {
+        1: "Introduction Arc",
+        2: "Temp Arc 2",
+        3: "Temp Arc 3"
         // Add more numbers and words here as needed!
-                        };
+    };
+    // Convert the raw number to your word text immediately
+    cell.textContent = arcWords[guessVal] || guessVal;
+} else {
+    // For all other columns, use standard text display
+    cell.textContent = guessVal;
+}
+
+// 2. SECOND: Handle background coloring and up/down indicator arrows
+if (guessVal === targetVal) {
+    cell.classList.add('correct');
+    // If it's correct, we don't append any arrows, so we are done!
+} 
+// Number check with directions indicators (for indices 4 and 7)
+else if (i === 4 || i === 7) {
+    cell.classList.add('incorrect');
+    const arrowSpan = document.createElement('span');
+    arrowSpan.className = 'arrow';
+    arrowSpan.textContent = guessVal < targetVal ? " ⬆️" : " ⬇️";
+    cell.appendChild(arrowSpan);
+} 
+// Arrow calculation specifically for Column 8 when it's incorrect
+else if (i === 8) {
+    cell.classList.add('incorrect');
+    const arrowSpan = document.createElement('span');
+    arrowSpan.className = 'arrow';
+    arrowSpan.textContent = guessVal < targetVal ? " ⬆️" : " ⬇️";
+    cell.appendChild(arrowSpan);
+}
 
     // 2. Change the cell text to the word (defaults to the number if not listed above)
     cell.textContent = arcWords[guessVal] || guessVal;
