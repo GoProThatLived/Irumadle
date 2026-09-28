@@ -334,6 +334,16 @@
                // 1. FIRST: Handle text formatting based on the column index
                 if (guessVal === targetVal) {
                     cell.classList.add('correct');
+                    if (i === 8) {
+                        const arcWords = {
+                        1: "Introduction Arc",
+                        2: "Temp Arc 2",
+                        3: "Temp Arc 3"
+                        // Add more numbers and words here as needed!
+                            cell.textContent = arcWords[guessVal] || guessVal;
+                        };
+                
+                }
                 } 
                 // Number check with directions indicators (for indices 4 and 7)
                 else if (i === 4 || i === 7) {
