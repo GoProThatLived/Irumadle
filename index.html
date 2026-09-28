@@ -84,7 +84,7 @@
             background-color: var(--color-surface);
             border: 1px solid var(--color-border);
             border-radius: 0 0 8px 8px;
-            max-height: 250px;
+            max-height: 200px;
             overflow-y: auto;
             z-index: 10;
             display: none;
@@ -92,10 +92,7 @@
         }
 
         .dropdown-item {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            padding: 8px 16px;
+            padding: 10px 16px;
             cursor: pointer;
             transition: background-color 0.2s;
         }
@@ -104,22 +101,10 @@
             background-color: var(--color-border);
         }
 
-        .dropdown-item img {
-            width: 40px;
-            height: 40px;
-            object-fit: cover;
-            border-radius: 4px;
-            background-color: #333;
-        }
-
-        .dropdown-item span {
-            font-weight: 500;
-        }
-
-        /* Grid Headers - Updated to 9 columns */
+        /* Grid Headers adjusted for 9 columns total */
         .grid-header {
             display: grid;
-            grid-template-columns: 60px 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1.2fr;
+            grid-template-columns: 60px 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
             gap: 8px;
             margin-bottom: 8px;
             font-weight: bold;
@@ -129,7 +114,7 @@
             text-align: center;
         }
 
-        /* Grid Row Layout - Updated to 9 columns */
+        /* Grid Row Layout adjusted for 9 columns total */
         .guess-grid {
             display: flex;
             flex-direction: column;
@@ -138,7 +123,7 @@
 
         .guess-row {
             display: grid;
-            grid-template-columns: 60px 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1.2fr;
+            grid-template-columns: 60px 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
             gap: 8px;
         }
 
@@ -240,23 +225,35 @@
     </div>
 
     <script>
-        // Dictionary mapping numbers (1-50) to text values
-        const arcMapping = {
-            1: "Introduction Arc",
-            2: "Cannonball",
-            3: "Babyls Battler Arc",
-            4: "Harvest Festival",
-            5: "Music Festival",
-            // Add remaining entries up to 50 here...
+        // Number to Word Mapping Helper Table (Expand up to 50 as needed)
+        const arcNumberToWord = {
+            1: "One",
+            2: "Two",
+            3: "Three",
+            4: "Four",
+            5: "Five",
+            6: "Six",
+            7: "Seven",
+            8: "Eight",
+            9: "Nine",
+            10: "Ten",
+            11: "Eleven",
+            12: "Twelve",
+            13: "Thirteen",
+            14: "Fourteen",
+            15: "Fifteen",
+            // ... Add mappings easily all the way up to 50 here
+            50: "Fifty"
         };
 
         // Sample Pool of Items
-        // Format: [ImageURL, TargetName, Race, HairColor, Age, BloodlineMagic, Affiliation, Rank, IntroArcNumber]
+        // New Layout Mapping index: 
+        // [0: ImageURL, 1: TargetName, 2: NewTextVal, 3: Cat1Val, 4: Cat2Num, 5: Cat3Val, 6: Cat4Delimited, 7: Cat5Num, 8: IntroductionArcNum]
         const itemPool = [
             ["https://picsum.photos", "Suzuki Iruma", "Human", "Blue", 15, "No", "Sullivan Family/Babyls", 5.5, 1],
-            ["https://picsum.photos", "Asmodeus Alice", "Demon", "Pink", 15, "No", "Asmodeus Family/Babyls", 5, 1],
-            ["https://picsum.photos", "Valac Clara", "Deity", "Green", 14, "Yes", "Babyls/Valac Family", 4, 2],
-            ["https://picsum.photos", "Shiida", "Artificial Demon", "Yellow", 25, "No", "The Six Fingers", 0, 5],
+            ["https://picsum.photos", "Asmodeus Alice", "Demon", "Pink", 15, "No", "Asmodeus Family/Babyls", 5, 2],
+            ["https://picsum.photos", "Valac Clara", "Deity", "Green", 14, "Yes", "Babyls/Valac Family", 4, 1],
+            ["https://picsum.photos", "Shiida", "Artificial Demon", "Yellow", 25, "No", "The Six Fingers", 0, 14],
             ["https://picsum.photos", "Ameri Azazel", "Demoness", "Red", 16, "Yes", "Demon Border Patrol/Student Council/Babyls", 7, 3]
         ];
 
@@ -291,19 +288,7 @@
             matched.forEach(item => {
                 const div = document.createElement('div');
                 div.className = 'dropdown-item';
-                
-                // Dropdown Thumbnail Image (Index 0 of item)
-                const img = document.createElement('img');
-                img.src = item[0];
-                img.alt = item[1];
-                
-                // Dropdown Text Name (Index 1 of item)
-                const nameSpan = document.createElement('span');
-                nameSpan.textContent = item[1];
-                
-                div.appendChild(img);
-                div.appendChild(nameSpan);
-                
+                div.textContent = item[1]; // Use item name
                 div.addEventListener('click', () => {
                     handleGuess(item);
                     searchInput.value = '';
@@ -320,3 +305,14 @@
             // Remove guessed item from subsequent dropdown lists
             remainingItems = remainingItems.filter(item => item[1] !== guessItem[1]);
 
+            const row = document.createElement('div');
+            row.className = 'guess-row';
+
+            // 0. Image Slot Box
+            const imgCell = document.createElement('div');
+            imgCell.className = 'cell image-cell';
+            const img = document.createElement('img');
+            img.src = guessItem[0];
+            img.alt = guessItem[1];
+            imgCell.appendChild(img);
+            row.appendChild(imgCell);
