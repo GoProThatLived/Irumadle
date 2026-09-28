@@ -292,12 +292,12 @@
                 const div = document.createElement('div');
                 div.className = 'dropdown-item';
                 
-                // Dropdown Thumbnail Image
+                // Dropdown Thumbnail Image (Index 0 of item)
                 const img = document.createElement('img');
                 img.src = item[0];
                 img.alt = item[1];
                 
-                // Dropdown Text
+                // Dropdown Text Name (Index 1 of item)
                 const nameSpan = document.createElement('span');
                 nameSpan.textContent = item[1];
                 
@@ -320,4 +320,3 @@
             // Remove guessed item from subsequent dropdown lists
             remainingItems = remainingItems.filter(item => item[1] !== guessItem[1]);
 
-            const row = document.createElement('div');
