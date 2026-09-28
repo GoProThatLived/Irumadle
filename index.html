@@ -320,6 +320,12 @@
                     arrowSpan.className = 'arrow';
                     arrowSpan.textContent = guessVal < targetVal ? " ⬆️" : " ⬇️";
                     cell.appendChild(arrowSpan);
+                }else if (i === 8) {
+                    cell.classList.add('incorrect');
+                    const arrowSpan = document.createElement('span');
+                    arrowSpan.className = 'arrow';
+                    arrowSpan.textContent = guessVal < targetVal ? " ⬆️" : " ⬇️";
+                    cell.appendChild(arrowSpan);
                 } 
                 // Delimited values split check (for index 6)
                 else if (i === 6) {
