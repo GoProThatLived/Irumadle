@@ -104,7 +104,7 @@
         /* Grid Headers */
         .grid-header {
             display: grid;
-            grid-template-columns: 60px 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+            grid-template-columns: 60px 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
             gap: 8px;
             margin-bottom: 8px;
             font-weight: bold;
@@ -201,7 +201,11 @@
             <div id="dropdownMenu" class="dropdown-menu"></div>
         </div>
 
-        <div id="winMessage" class="win-message">🎉 You guessed it right! 🎉</div>
+      <!-- Update this in your HTML layout -->
+    <div id="winMessage" class="win-message">
+        You guessed correctly, today's character was <span id="correctCharacterName"></span>!
+    </div>
+
 
         <!-- Guess Grid Area -->
         <div>
@@ -215,6 +219,7 @@
                 <div>Bloodline Magic</div>
                 <div>Affiliation</div>
                 <div>Rank</div>
+                <div>Introduction Arc</div>
             </div>
             
             <div id="guessGrid" class="guess-grid">
@@ -227,11 +232,11 @@
         // Sample Pool of Items
         // Format: [ImageURL, TargetName, NewTextVal, Cat1Val, Cat2Num, Cat3Val, Cat4Delimited, Cat5Num]
         const itemPool = [
-            ["https://picsum.photos/100?random=1", "Suzuki Iruma", "Human", "Blue", 15, "No", "Sullivan Family/Babyls", 5.5],
-            ["https://picsum.photos/100?random=2", "Asmodeus Alice", "Demon", "Pink", 15, "No", "Asmodeus Family/Babyls", 5],
-            ["https://picsum.photos/100?random=3", "Valac Clara", "Deity", "Green", 14, "Yes", "Babyls/Valac Family", 4],
-            ["https://picsum.photos/100?random=4", "Shiida", "Artificial Demon", "Yellow", 25, "No", "The Six Fingers", 0],
-            ["https://picsum.photos/100?random=5", "Ameri Azazel", "Demoness", "Red", 16, "Yes", "Demon Border Patrol/Student Council/Babyls", 7]
+            ["https://picsum.photos/100?random=1", "Suzuki Iruma", "Human", "Blue", 15, "No", "Sullivan Family/Babyls", 5.5, 1],
+            ["https://picsum.photos/100?random=2", "Asmodeus Alice", "Demon", "Pink", 15, "No", "Asmodeus Family/Babyls", 5, 1],
+            ["https://picsum.photos/100?random=3", "Valac Clara", "Deity", "Green", 14, "Yes", "Babyls/Valac Family", 4, 1],
+            ["https://picsum.photos/100?random=4", "Shiida", "Artificial Demon", "Yellow", 25, "No", "The Six Fingers", 0, 1],
+            ["https://picsum.photos/100?random=5", "Ameri Azazel", "Demoness", "Red", 16, "Yes", "Demon Border Patrol/Student Council/Babyls", 7, 1]
         ];
 
         // System randomly picks a winning target item
