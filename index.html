@@ -232,10 +232,10 @@
         // Sample Pool of Items
         // Format: [ImageURL, TargetName, NewTextVal, Cat1Val, Cat2Num, Cat3Val, Cat4Delimited, Cat5Num]
         const itemPool = [
-            ["https://picsum.photos/100?random=1", "Suzuki Iruma", "Human", "Blue", 15, "No", "Sullivan Family/Babyls", 5.5, 1],
+            ["https://picsum.photos/100?random=1", "Sullivan Iruma", "Human", "Blue", 15, "No", "Sullivan Family/Babyls", 5.5, 1],
             ["https://picsum.photos/100?random=2", "Asmodeus Alice", "Demon", "Pink", 15, "No", "Asmodeus Family/Babyls", 5, 1],
             ["https://picsum.photos/100?random=3", "Valac Clara", "Deity", "Green", 14, "Yes", "Babyls/Valac Family", 4, 1],
-            ["https://picsum.photos/100?random=4", "Shiida", "Artificial Demon", "Yellow", 25, "No", "The Six Fingers", 0, 1],
+            ["https://picsum.photos/100?random=4", "Shiida", "Artificial Demon", "Yellow", 25, "No", "Babyls/Sullivan Family", 0, 1],
             ["https://picsum.photos/100?random=5", "Ameri Azazel", "Demoness", "Red", 16, "Yes", "Demon Border Patrol/Student Council/Babyls", 7, 1]
         ];
 
@@ -320,13 +320,27 @@
                     arrowSpan.className = 'arrow';
                     arrowSpan.textContent = guessVal < targetVal ? " ⬆️" : " ⬇️";
                     cell.appendChild(arrowSpan);
-                }else if (i === 8) {
-                    cell.classList.add('incorrect');
-                    const arrowSpan = document.createElement('span');
-                    arrowSpan.className = 'arrow';
-                    arrowSpan.textContent = guessVal < targetVal ? " ⬆️" : " ⬇️";
-                    cell.appendChild(arrowSpan);
-                } 
+} 
+                    // Custom Word Replacement + Arrow Calculation for Column 8
+                    else if (i === 8) {
+                        cell.classList.add('incorrect');
+
+                        // 1. Map your numbers to custom words
+                        const arcWords = {
+                        1: "Introduction Arc",
+                        2: "Cannonball"
+        // Add more numbers and words here as needed!
+                        };
+
+    // 2. Change the cell text to the word (defaults to the number if not listed above)
+    cell.textContent = arcWords[guessVal] || guessVal;
+
+    // 3. The math still runs on the numbers, so the correct arrow is added right next to the word
+    const arrowSpan = document.createElement('span');
+    arrowSpan.className = 'arrow';
+    arrowSpan.textContent = guessVal < targetVal ? " ⬆️" : " ⬇️";
+    cell.appendChild(arrowSpan);
+}
                 // Delimited values split check (for index 6)
                 else if (i === 6) {
                     const guessParts = String(guessVal).split('/');
