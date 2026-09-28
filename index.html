@@ -46,7 +46,7 @@
 
         .game-container {
             width: 100%;
-            max-width: 1100px;
+            max-width: 1000px;
             display: flex;
             flex-direction: column;
             gap: 20px;
@@ -101,10 +101,10 @@
             background-color: var(--color-border);
         }
 
-        /* Grid Headers adjusted for 9 columns total */
+        /* Grid Headers */
         .grid-header {
             display: grid;
-            grid-template-columns: 60px 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+            grid-template-columns: 60px 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
             gap: 8px;
             margin-bottom: 8px;
             font-weight: bold;
@@ -114,7 +114,7 @@
             text-align: center;
         }
 
-        /* Grid Row Layout adjusted for 9 columns total */
+        /* Grid Row Layout */
         .guess-grid {
             display: flex;
             flex-direction: column;
@@ -123,7 +123,7 @@
 
         .guess-row {
             display: grid;
-            grid-template-columns: 60px 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+            grid-template-columns: 60px 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
             gap: 8px;
         }
 
@@ -215,7 +215,6 @@
                 <div>Bloodline Magic</div>
                 <div>Affiliation</div>
                 <div>Rank</div>
-                <div>Introduction Arc</div>
             </div>
             
             <div id="guessGrid" class="guess-grid">
@@ -225,36 +224,14 @@
     </div>
 
     <script>
-        // Number to Word Mapping Helper Table (Expand up to 50 as needed)
-        const arcNumberToWord = {
-            1: "One",
-            2: "Two",
-            3: "Three",
-            4: "Four",
-            5: "Five",
-            6: "Six",
-            7: "Seven",
-            8: "Eight",
-            9: "Nine",
-            10: "Ten",
-            11: "Eleven",
-            12: "Twelve",
-            13: "Thirteen",
-            14: "Fourteen",
-            15: "Fifteen",
-            // ... Add mappings easily all the way up to 50 here
-            50: "Fifty"
-        };
-
         // Sample Pool of Items
-        // New Layout Mapping index: 
-        // [0: ImageURL, 1: TargetName, 2: NewTextVal, 3: Cat1Val, 4: Cat2Num, 5: Cat3Val, 6: Cat4Delimited, 7: Cat5Num, 8: IntroductionArcNum]
+        // Format: [ImageURL, TargetName, NewTextVal, Cat1Val, Cat2Num, Cat3Val, Cat4Delimited, Cat5Num]
         const itemPool = [
-            ["https://picsum.photos", "Suzuki Iruma", "Human", "Blue", 15, "No", "Sullivan Family/Babyls", 5.5, 1],
-            ["https://picsum.photos", "Asmodeus Alice", "Demon", "Pink", 15, "No", "Asmodeus Family/Babyls", 5, 2],
-            ["https://picsum.photos", "Valac Clara", "Deity", "Green", 14, "Yes", "Babyls/Valac Family", 4, 1],
-            ["https://picsum.photos", "Shiida", "Artificial Demon", "Yellow", 25, "No", "The Six Fingers", 0, 14],
-            ["https://picsum.photos", "Ameri Azazel", "Demoness", "Red", 16, "Yes", "Demon Border Patrol/Student Council/Babyls", 7, 3]
+            ["https://picsum.photos/100?random=1", "Suzuki Iruma", "Human", "Blue", 15, "No", "Sullivan Family/Babyls", 5.5],
+            ["https://picsum.photos/100?random=2", "Asmodeus Alice", "Demon", "Pink", 15, "No", "Asmodeus Family/Babyls", 5],
+            ["https://picsum.photos/100?random=3", "Valac Clara", "Deity", "Green", 14, "Yes", "Babyls/Valac Family", 4],
+            ["https://picsum.photos/100?random=4", "Shiida", "Artificial Demon", "Yellow", 25, "No", "The Six Fingers", 0],
+            ["https://picsum.photos/100?random=5", "Ameri Azazel", "Demoness", "Red", 16, "Yes", "Demon Border Patrol/Student Council/Babyls", 7]
         ];
 
         // System randomly picks a winning target item
@@ -316,3 +293,68 @@
             img.alt = guessItem[1];
             imgCell.appendChild(img);
             row.appendChild(imgCell);
+
+            // Process columns sequentially: 1 (Name), 2 (New Text), 3 (Cat1), 4 (Cat2 #), 5 (Cat3), 6 (Cat4 /), 7 (Cat5 #)
+            for (let i = 1; i < guessItem.length; i++) {
+                const cell = document.createElement('div');
+                cell.className = 'cell';
+                
+                const guessVal = guessItem[i];
+                const targetVal = targetSolution[i];
+
+                cell.textContent = guessVal;
+
+                // Absolute string equality check
+                if (guessVal === targetVal) {
+                    cell.classList.add('correct');
+                } 
+                // Number check with directions indicators (for indices 4 and 7)
+                else if (i === 4 || i === 7) {
+                    cell.classList.add('incorrect');
+                    const arrowSpan = document.createElement('span');
+                    arrowSpan.className = 'arrow';
+                    arrowSpan.textContent = guessVal < targetVal ? " ⬆️" : " ⬇️";
+                    cell.appendChild(arrowSpan);
+                } 
+                // Delimited values split check (for index 6)
+                else if (i === 6) {
+                    const guessParts = String(guessVal).split('/');
+                    const targetParts = String(targetVal).split('/');
+                    const hasOverlap = guessParts.some(part => targetParts.includes(part));
+                    
+                    if (hasOverlap) {
+                        cell.classList.add('partial');
+                    } else {
+                        cell.classList.add('incorrect');
+                    }
+                } 
+                // Standard un-matched strings
+                else {
+                    cell.classList.add('incorrect');
+                }
+
+                row.appendChild(cell);
+            }
+
+            guessGrid.appendChild(row);
+
+            // Win evaluation check
+            if (guessItem[1] === targetSolution[1]) {
+                gameOver = true;
+                winMessage.style.display = 'block';
+                searchInput.disabled = true;
+            }
+        }
+
+        // Operational Event Listeners
+        searchInput.addEventListener('input', (e) => updateDropdown(e.target.value));
+
+        // Click outside closes dropdown menu
+        document.addEventListener('click', (e) => {
+            if (!searchInput.contains(e.target) && !dropdownMenu.contains(e.target)) {
+                dropdownMenu.style.display = 'none';
+            }
+        });
+    </script>
+</body>
+</html>
