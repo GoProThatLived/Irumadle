@@ -146,10 +146,9 @@
         }
 
         .cell.image-cell {
-    /* Keeps the 4px padding so the container is identical in size to text cells */
-    padding: 4px; 
-    background-color: var(--color-surface);
-    border: 2px solid var(--color-border);
+    grid-column: span 2;
+    aspect-ratio: auto; /* Dissolves the 1:1 squishing constraint */
+    height: 100%;       /* Ensures it fills the row height */
 }
 
 .cell img {
