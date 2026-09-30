@@ -234,58 +234,180 @@
         // Format: [ImageURL, TargetName, NewTextVal, Cat1Val, Cat2Num, Cat3Val, Cat4Delimited, Cat5Num]
         const itemPool = [
             //Demon Kings
+            ["MisfitClass/SullivanIruma.webp", "Derkila", "Demon", "Blue", 15, "No", "Demon King", 10, 1],
+            ["MisfitClass/SullivanIruma.webp", "Lady Kushinashi", "Demoness", "Blue", 15, "No", "Demon King", 10, 1],
+            ["MisfitClass/SullivanIruma.webp", "Alikred", "Fragment/Projection?", "Blue", 15, "No", "Demon King/", 10, 1],
             // Misfit Class Students (Introduced in Arc 1: Babyls Enrollment Arc)
-            ["MisfitClass/SullivanIruma.webp", "Sullivan Iruma", "Human", "Blue", 15, "No", "Sullivan Family/Babyls/Boku Alliance", 5.5, 1],
-            ["MisfitClass/AsmodeusAlice.webp", "Asmodeus Alice", "Demon", "Pink", 15, "No", "Asmodeus Family/Babyls", 5, 1],
-            ["MisfitClass/ValacClara.webp", "Valac Clara", "Deity", "Green", 14, "Yes", "Valac Family/Babyls/Succubus Battler", 4, 1],
-            ["https://picsum.photos/100?random=5", "Ameri Azazel", "Demoness", "Red", 16, "Yes", "Demon Border Patrol/Student Council/Babyls", 7, 1],
-            ["MisfitClass/SabnockSabro.webp", "Sabnock Sabro", "Demon", "Blonde", 15, "Yes", "Sabnock Family/Babyls/Magical Apparatus Battler", 4, 1],
-            ["MisfitClass/ShaxLied.webp", "Shax Lied", "Demon", "Blonde", 15, "Yes", "Babyls/Game Battler", 4, 1],
-            ["MisfitClass/CrocellKeroli.webp", "Crocell Keroli", "Demon", "Blue", 15, "Yes", "Crocell Family/Babyls/Demdols", 5, 1],
-            ["MisfitClass/AndroJazz.webp", "Andro M. Jazz", "Demon", "Brown", 15, "Yes", "Andro Family/Babyls", 4, 1],
-            ["MisfitClass/AgaresPicero.webp", "Agares Picero", "Demon", "Light Blue", 15, "Yes", "Agares Family/Babyls", 4, 1],
-            ["MisfitClass/CaimCamui.webp", "Caim Camui", "Demon", "Grey", 15, "Yes", "Babyls/Translation Battler", 4, 1],
-            ["MisfitClass/IxElizabetta.webp", "Ix Elizabetta", "Demoness", "Blonde", 16, "Yes", "Babyls/Succubus Battler", 4, 1],
-            ["MisfitClass/AllocerSchneider.webp", "Allocer Schneider", "Demon", "Blue", 15, "No", "Babyls", 4, 1],
-            ["MisfitClass/GarpGoemon.webp", "Garp Goemon", "Demon", "Straw", 15, "Yes", "Babyls", 4, 1],
-            ["MisfitClass/PursonSoi.webp", "Purson Soi", "Demon", "Purple", 15, "Yes", "Purson Family/Babyls/Music Festival", 4, 1],
+            ["MisfitClass/SullivanIruma.webp", "Sullivan Iruma", "Human", "Blue", 15, "No", "Sullivan Family/Babyls", 5.5, 1],
+            ["MisfitClass/AsmodeusAlice.webp", "Asmodeus Alice", "Demon", "Pink", 16, "No", "Asmodeus Family/Babyls", 5, 1],
+            ["MisfitClass/ValacClara.webp", "Valac Clara", "Deity", "Green", 15, "Yes", "Valac Family/Babyls", 4, 1],
+            ["MisfitClass/SabnockSabro.webp", "Sabnock Sabro", "Demon", "Yellow", 15, "Yes", "Sabnock Family/Babyls", 4, 1],
+            ["MisfitClass/ShaxLied.webp", "Shax Lied", "Demon", "Yellow", 15, "Yes", "Babyls", 4, 1],
+            ["MisfitClass/CrocellKeroli.webp", "Crocell Keroli", "Demon", "White", 15, "Yes", "Crocell Family/Babyls/Demdols", 5, 1],
+            ["MisfitClass/AndroJazz.webp", "Andro M. Jazz", "Demon", "Black", 15, "Yes", "Andro Family/Babyls", 4, 1],
+            ["MisfitClass/AgaresPicero.webp", "Agares Picero", "Demon", "Orange", 15, "Yes", "Agares Family/Babyls", 4, 1],
+            ["MisfitClass/CaimCamui.webp", "Caim Camui", "Demon", "Brown", 15, "Yes", "Babyls", 4, 1],
+            ["MisfitClass/IxElizabetta.webp", "Ix Elizabetta", "Demoness", "Yellow", 16, "Yes", "Babyls/Succubus Battler", 4, 1],
+            ["MisfitClass/AllocerSchneider.webp", "Allocer Schneider", "Demon", "Gray", 15, "No", "Babyls", 4, 1],
+            ["MisfitClass/GarpGoemon.webp", "Garp Goemon", "Demon", "Blue", 15, "Yes", "Babyls", 4, 1],
+            ["MisfitClass/PursonSoi.webp", "Purson Soi", "Demon", "Purple", 15, "Yes", "Purson Family/Babyls", 4, 1],
             // Babyls Staff
             ["MisfitClass/SullivanIruma.webp", "Shiida", "Artificial Demon", "Yellow", 25, "No", "The Six Fingers/Babyls", 0, 1],
-            ["https://picsum.photos/100?random=1", "Lord Sullivan", "Demon", "Light Blue", 500, "No", "Three Greats/Babyls/Babel Tower", 9, 1],
-            ["https://picsum.photos/100?random=1", "Opera", "Demon", "Cat-Ear Red", 30, "No", "Sullivan Family/Babyls Staff", 8, 1],
-            ["https://picsum.photos/100?random=1", "Naberius Kalego", "Demon", "Dark Purple", 35, "No", "Naberius Family/Babyls Faculty", 8, 1],
-            ["https://picsum.photos/100?random=1", "Balam Shichiro", "Demon", "Dark Green", 36, "No", "Balam Family/Babyls Faculty", 8, 1],
+            ["MisfitClass/SullivanIruma.webp", "Lord Sullivan", "Demon", "Bald", 500, "No", "The Thirteen Crowns/Sullivan Family/Babyls", 9, 1],
+            ["MisfitClass/SullivanIruma.webp", "Opera", "Demon", "Red", 30, "No", "Sullivan Family/Babyls", 8, 1],
+            ["MisfitClass/SullivanIruma.webp", "Naberius Kalego", "Demon", "Purple", 35, "No", "Naberius Family/Babyls Faculty", 8, 1],
+            ["MisfitClass/SullivanIruma.webp", "Balam Shichiro", "Demon", "White", 34, "No", "Balam Family/Babyls Faculty", 8, 1],
+            ["MisfitClass/SullivanIruma.webp", "Robin", "Demon", "White", 34, "No", "Balam Family/Babyls Faculty", 8, 1],
+            ["MisfitClass/SullivanIruma.webp", "Blushenko", "Demon", "White", 34, "No", "Balam Family/Babyls Faculty", 8, 1],
+            ["MisfitClass/SullivanIruma.webp", "Morax", "Demon", "White", 34, "No", "Balam Family/Babyls Faculty", 8, 1],
+            ["MisfitClass/SullivanIruma.webp", "Furcas", "Demon", "White", 34, "No", "Balam Family/Babyls Faculty", 8, 1],
+            ["MisfitClass/SullivanIruma.webp", "Momonoki", "Demon", "White", 34, "No", "Balam Family/Babyls Faculty", 8, 1],
+            ["MisfitClass/SullivanIruma.webp", "Oswell", "Demon", "White", 34, "No", "Balam Family/Babyls Faculty", 8, 1],
+            ["MisfitClass/SullivanIruma.webp", "Dali", "Demon", "White", 34, "No", "Balam Family/Babyls Faculty", 8, 1],
+            ["MisfitClass/SullivanIruma.webp", "Stolas Suzy", "Demon", "White", 34, "No", "Balam Family/Babyls Faculty", 8, 1],
+            ["MisfitClass/SullivanIruma.webp", "Raim", "Demon", "White", 34, "No", "Balam Family/Babyls Faculty", 8, 1],
+            ["MisfitClass/SullivanIruma.webp", "Marbas", "Demon", "White", 34, "No", "Balam Family/Babyls Faculty", 8, 1],
+            ["MisfitClass/SullivanIruma.webp", "Ifrit", "Demon", "White", 34, "No", "Balam Family/Babyls Faculty", 8, 1],
+            ["MisfitClass/SullivanIruma.webp", "Murmur", "Demon", "White", 34, "No", "Balam Family/Babyls Faculty", 8, 1],            
+            ["MisfitClass/SullivanIruma.webp", "Ipos", "Demon", "White", 34, "No", "Balam Family/Babyls Faculty", 8, 1],
             //Babyls Student Council
+            ["https://picsum.photos/100?random=5", "Ameri Azazel", "Demoness", "Red", 16, "Yes", "Demon Border Patrol/Student Council/Babyls", 7, 1],
+            ["MisfitClass/SullivanIruma.webp", "Ronove Romiere", "Demon", "White", 34, "No", "Balam Family/Babyls Faculty", 8, 1],
+            ["MisfitClass/SullivanIruma.webp", "Western", "Demon", "White", 34, "No", "Balam Family/Babyls Faculty", 8, 1],
+            ["MisfitClass/SullivanIruma.webp", "Quichelight", "Demon", "White", 34, "No", "Balam Family/Babyls Faculty", 8, 1],
+            ["MisfitClass/SullivanIruma.webp", "Smoke", "Demon", "White", 34, "No", "Balam Family/Babyls Faculty", 8, 1],
+            ["MisfitClass/SullivanIruma.webp", "Grave", "Demon", "White", 34, "No", "Balam Family/Babyls Faculty", 8, 1],
+            ["MisfitClass/SullivanIruma.webp", "Nafra", "Demon", "White", 34, "No", "Balam Family/Babyls Faculty", 8, 1],
+            ["MisfitClass/SullivanIruma.webp", "Schenell", "Demon", "White", 34, "No", "Balam Family/Babyls Faculty", 8, 1],
+            ["MisfitClass/SullivanIruma.webp", "Garson", "Demon", "White", 34, "No", "Balam Family/Babyls Faculty", 8, 1],
+            ["MisfitClass/SullivanIruma.webp", "Zepar Zeze", "Demon", "White", 34, "No", "Balam Family/Babyls Faculty", 8, 1],
             //Babyls known side characters, ie Eiko and Eita
+            ["MisfitClass/SullivanIruma.webp", "Sabnock Silvia", "Demon", "White", 34, "No", "Balam Family/Babyls Faculty", 8, 1],
+            ["MisfitClass/SullivanIruma.webp", "Crocell Chima", "Demon", "White", 34, "No", "Balam Family/Babyls Faculty", 8, 1],
+            ["MisfitClass/SullivanIruma.webp", "Zepar Zeze", "Demon", "White", 34, "No", "Balam Family/Babyls Faculty", 8, 1],
+            ["MisfitClass/SullivanIruma.webp", "Zepar Zeze", "Demon", "White", 34, "No", "Balam Family/Babyls Faculty", 8, 1],
+            ["MisfitClass/SullivanIruma.webp", "Zepar Zeze", "Demon", "White", 34, "No", "Balam Family/Babyls Faculty", 8, 1],
+            ["MisfitClass/SullivanIruma.webp", "Zepar Zeze", "Demon", "White", 34, "No", "Balam Family/Babyls Faculty", 8, 1],
+            ["MisfitClass/SullivanIruma.webp", "Zepar Zeze", "Demon", "White", 34, "No", "Balam Family/Babyls Faculty", 8, 1],
+            ["MisfitClass/SullivanIruma.webp", "Zepar Zeze", "Demon", "White", 34, "No", "Balam Family/Babyls Faculty", 8, 1],
+
             //Three Greats
+            ["MisfitClass/SullivanIruma.webp", "Lord Belial", "Demon", "White", 34, "No", "Balam Family/Babyls Faculty", 8, 1],
+            ["MisfitClass/SullivanIruma.webp", "Lady Levi", "Demon", "White", 34, "No", "Balam Family/Babyls Faculty", 8, 1],
+            
             //Thirteen Crowns
+            ["MisfitClass/SullivanIruma.webp", "Belzebuth", "Demon", "White", 34, "No", "Balam Family/Babyls Faculty", 8, 1],
+            ["MisfitClass/SullivanIruma.webp", "Asmodeus Amuryllis", "Demon", "White", 34, "No", "Balam Family/Babyls Faculty", 8, 1],
+            ["MisfitClass/SullivanIruma.webp", "Azazel Henri", "Demon", "White", 34, "No", "Balam Family/Babyls Faculty", 8, 1],
+            ["MisfitClass/SullivanIruma.webp", "Amaymon", "Demon", "White", 34, "No", "Balam Family/Babyls Faculty", 8, 1],
+            ["MisfitClass/SullivanIruma.webp", "Paimon", "Demon", "White", 34, "No", "Balam Family/Babyls Faculty", 8, 1],
+            ["MisfitClass/SullivanIruma.webp", "Astaroh", "Demon", "White", 34, "No", "Balam Family/Babyls Faculty", 8, 1],
+            ["MisfitClass/SullivanIruma.webp", "Baal", "Demon", "White", 34, "No", "Balam Family/Babyls Faculty", 8, 1],
+            ["MisfitClass/SullivanIruma.webp", "Mephisto", "Demon", "White", 34, "No", "Balam Family/Babyls Faculty", 8, 1],
+            ["MisfitClass/SullivanIruma.webp", "Naberius Narnia", "Demon", "White", 34, "No", "Balam Family/Babyls Faculty", 8, 1],
+            ["MisfitClass/SullivanIruma.webp", "Amduscias Poro", "Demon", "White", 34, "No", "The Thirteen Crowns/The Six Finger", 8, 1],
+            ["MisfitClass/SullivanIruma.webp", "Behemolt", "Demon", "White", 34, "No", "Balam Family/Babyls Faculty", 8, 1],
+            ["MisfitClass/SullivanIruma.webp", "Andras Agi", "Demon", "White", 34, "No", "Balam Family/Babyls Faculty", 8, 1],
+            ["MisfitClass/SullivanIruma.webp", "Ronove Rosehippy", "Demon", "White", 34, "No", "Balam Family/Babyls Faculty", 8, 1],
+            ["MisfitClass/SullivanIruma.webp", "Glasya", "Demon", "White", 34, "No", "Balam Family/Babyls Faculty", 8, 1],
+            
             //Various Battlers
             //1. Broadcasting Battler
             //2. Succubus Battler
-            //...
+            //3. New Magic Development Battler
+            ["MisfitClass/SullivanIruma.webp", "Garu", "Demon", "White", 34, "No", "Balam Family/Babyls Faculty", 8, 1],
+
             //The Six Fingers
+            ["MisfitClass/SullivanIruma.webp", "Amy Kiriwo", "Demon", "White", 34, "No", "Balam Family/Babyls Faculty", 8, 1],
+            ["MisfitClass/SullivanIruma.webp", "Atori", "Demon", "White", 34, "No", "Balam Family/Babyls Faculty", 8, 1],
+            ["MisfitClass/SullivanIruma.webp", "Wett", "Demon", "White", 34, "No", "Balam Family/Babyls Faculty", 8, 1],
+            ["MisfitClass/SullivanIruma.webp", "Hyudarin", "Demon", "White", 34, "No", "Balam Family/Babyls Faculty", 8, 1],
+            ["MisfitClass/SullivanIruma.webp", "Miki", "Demon", "White", 34, "No", "Balam Family/Babyls Faculty", 8, 1],
+            ["MisfitClass/SullivanIruma.webp", "Maemaro", "Demon", "White", 34, "No", "Balam Family/Babyls Faculty", 8, 1],
+            ["MisfitClass/SullivanIruma.webp", "Ocho", "Demon", "White", 34, "No", "Balam Family/Babyls Faculty", 8, 1],
+            
+            
             //Three Heroes Family
             //1. Barbatos Family
+            ["MisfitClass/SullivanIruma.webp", "Barbatos Bachiko", "Demon", "White", 34, "No", "Balam Family/Babyls Faculty", 8, 1],
+            ["MisfitClass/SullivanIruma.webp", "Barbatos President", "Demon", "White", 34, "No", "Balam Family/Babyls Faculty", 8, 1],
             //2. Furfur Clan
+            ["MisfitClass/SullivanIruma.webp", "General Furfur", "Demon", "White", 34, "No", "Balam Family/Babyls Faculty", 8, 1],
             //3. Zepar Clan
+            ["MisfitClass/SullivanIruma.webp", "Zepar Zera", "Demon", "White", 34, "No", "Balam Family/Babyls Faculty", 8, 1],
+            ["MisfitClass/SullivanIruma.webp", "Zepar Palalaika", "Demon", "White", 34, "No", "Balam Family/Babyls Faculty", 8, 1],
+            ["MisfitClass/SullivanIruma.webp", "Zepar Zoui", "Demon", "White", 34, "No", "Balam Family/Babyls Faculty", 8, 1],
             //Non specific mentors
+            ["MisfitClass/SullivanIruma.webp", "Mr. Hat", "Demon", "White", 34, "No", "Balam Family/Babyls Faculty", 8, 1],
+            ["MisfitClass/SullivanIruma.webp", "Vepar", "Demon", "White", 34, "No", "Balam Family/Babyls Faculty", 8, 1],
             //Jackapo Subtyrannic Institute
+            ["MisfitClass/SullivanIruma.webp", "Belial Berry Razberry", "Demon", "White", 34, "No", "Balam Family/Babyls Faculty", 8, 1],
+            
             //Levialon Nethwater Academy
+            ["MisfitClass/SullivanIruma.webp", "Leviathan Leidzi", "Demon", "White", 34, "No", "Balam Family/Babyls Faculty", 8, 1],
+            ["MisfitClass/SullivanIruma.webp", "Valac Urara", "Demon", "White", 34, "No", "Balam Family/Babyls Faculty", 8, 1],
+            
             //Demon Border Patrol
+            ["MisfitClass/SullivanIruma.webp", "Amy Azami", "Demon", "White", 34, "No", "Balam Family/Babyls Faculty", 8, 1],
+            
             //Spin Offs/Side Story Specific
             //Demdols
             //Many Ears Tribe
-            //Phantom Thiefs
-            //Walter Clan
+            ["MisfitClass/SullivanIruma.webp", "Meimei", "Demon", "White", 34, "No", "Balam Family/Babyls Faculty", 8, 1],
+            ["MisfitClass/SullivanIruma.webp", "Munmu", "Demon", "White", 34, "No", "Balam Family/Babyls Faculty", 8, 1],
+            ["MisfitClass/SullivanIruma.webp", "Nova", "Demon", "White", 34, "No", "Balam Family/Babyls Faculty", 8, 1],
+            ["MisfitClass/SullivanIruma.webp", "Monmo?", "Demon", "White", 34, "No", "Balam Family/Babyls Faculty", 8, 1],
+            ["MisfitClass/SullivanIruma.webp", "Jumbo?", "Demon", "White", 34, "No", "Balam Family/Babyls Faculty", 8, 1],
+            ["MisfitClass/SullivanIruma.webp", "Kirito?", "Demon", "White", 34, "No", "Balam Family/Babyls Faculty", 8, 1],
+            //Museum
+            ["MisfitClass/SullivanIruma.webp", "Andro M. Rock", "Demon", "White", 34, "No", "Balam Family/Babyls Faculty", 8, 1],
+            ["MisfitClass/SullivanIruma.webp", "Shax Shakky", "Demon", "White", 34, "No", "Balam Family/Babyls Faculty", 8, 1],
+            //Ronove Clan
+            ["MisfitClass/SullivanIruma.webp", "Ronove Rosevelt", "Demon", "White", 34, "No", "Balam Family/Babyls Faculty", 8, 1],
+            
             //Valac Family excluding Clara and brother 1
+            ["MisfitClass/SullivanIruma.webp", "Mr. Valac", "Demon", "White", 34, "No", "Balam Family/Babyls Faculty", 8, 1],
+            ["MisfitClass/SullivanIruma.webp", "Valac Konchie", "Demon", "White", 34, "No", "Balam Family/Babyls Faculty", 8, 1],
+            ["MisfitClass/SullivanIruma.webp", "Valac Keebow", "Demon", "White", 34, "No", "Balam Family/Babyls Faculty", 8, 1],
+            ["MisfitClass/SullivanIruma.webp", "Valac Sin Sin", "Demon", "White", 34, "No", "Balam Family/Babyls Faculty", 8, 1],
+            ["MisfitClass/SullivanIruma.webp", "Valac Ran Ran", "Demon", "White", 34, "No", "Balam Family/Babyls Faculty", 8, 1],            
             //Familiars
             //Guardian Beast of Cutthroat Vallye
             //Secret Seed and beast from their
             //Walter Park Beast, might include in six fingers
             //Deities, Mainly Shura
             //Heartbreaker 26
+            ["MisfitClass/SullivanIruma.webp", "Aim OOlo", "Demon", "White", 34, "No", "Balam Family/Babyls Faculty", 8, 1],
+            ["MisfitClass/SullivanIruma.webp", "Incu Pamela", "Demon", "White", 34, "No", "Balam Family/Babyls Faculty", 8, 1],
+            ["MisfitClass/SullivanIruma.webp", "Hon Rin Chan", "Demon", "White", 34, "No", "Balam Family/Babyls Faculty", 8, 1],
+            ["MisfitClass/SullivanIruma.webp", "Ras Mozumi", "Demon", "White", 34, "No", "Balam Family/Babyls Faculty", 8, 1],
+            ["MisfitClass/SullivanIruma.webp", "Pemopemo Chimii", "Demon", "White", 34, "No", "Balam Family/Babyls Faculty", 8, 1],
+            ["MisfitClass/SullivanIruma.webp", "Pemopemo Demii", "Demon", "White", 34, "No", "Balam Family/Babyls Faculty", 8, 1],
+            ["MisfitClass/SullivanIruma.webp", "Lady Pheene Marianne", "Demon", "White", 34, "No", "Balam Family/Babyls Faculty", 8, 1],
+            ["MisfitClass/SullivanIruma.webp", "Uzu", "Demon", "White", 34, "No", "Balam Family/Babyls Faculty", 8, 1],
+            ["MisfitClass/SullivanIruma.webp", "Gebatee Yan", "Demon", "White", 34, "No", "Balam Family/Babyls Faculty", 8, 1],
+            ["MisfitClass/SullivanIruma.webp", "Valefar Chacha", "Demon", "White", 34, "No", "Balam Family/Babyls Faculty", 8, 1],
+            ["MisfitClass/SullivanIruma.webp", "Roel Michel", "Demon", "White", 34, "No", "Balam Family/Babyls Faculty", 8, 1],
+            ["MisfitClass/SullivanIruma.webp", "Jig Zakuma", "Demon", "White", 34, "No", "Balam Family/Babyls Faculty", 8, 1],
+            ["MisfitClass/SullivanIruma.webp", "Paruparu Shin", "Demon", "White", 34, "No", "Balam Family/Babyls Faculty", 8, 1],
+            ["MisfitClass/SullivanIruma.webp", "Paruparu Juju", "Demon", "White", 34, "No", "Balam Family/Babyls Faculty", 8, 1],
+            ["MisfitClass/SullivanIruma.webp", "Pulu Puko", "Demon", "White", 34, "No", "Balam Family/Babyls Faculty", 8, 1],
+            ["MisfitClass/SullivanIruma.webp", "Ronron", "Demon", "White", 34, "No", "Balam Family/Babyls Faculty", 8, 1],
+            ["MisfitClass/SullivanIruma.webp", "Shimaji", "Demon", "White", 34, "No", "Balam Family/Babyls Faculty", 8, 1],
+            ["MisfitClass/SullivanIruma.webp", "Thomas", "Demon", "White", 34, "No", "Balam Family/Babyls Faculty", 8, 1],
+            ["MisfitClass/SullivanIruma.webp", "Strow Fuwatoro", "Demon", "White", 34, "No", "Balam Family/Babyls Faculty", 8, 1],
+            ["MisfitClass/SullivanIruma.webp", "Marbas F. Yabashi", "Demon", "White", 34, "No", "Balam Family/Babyls Faculty", 8, 1],
+            ["MisfitClass/SullivanIruma.webp", "Seir Sepata", "Demon", "White", 34, "No", "Balam Family/Babyls Faculty", 8, 1],
+            ["MisfitClass/SullivanIruma.webp", "Nix Nikomaru", "Demon", "White", 34, "No", "Balam Family/Babyls Faculty", 8, 1],
             //O.U.R
             //Walter Park Prison
+            //Humans
+            //Extra
+            ["MisfitClass/SullivanIruma.webp", "Belzebuth Zebubra", "Demon", "White", 34, "No", "Balam Family/Babyls Faculty", 8, 1],
+            ["MisfitClass/SullivanIruma.webp", "David", "Demon", "White", 34, "No", "Balam Family/Babyls Faculty", 8, 1],
+            ["MisfitClass/SullivanIruma.webp", "Nagi", "Demon", "White", 34, "No", "Balam Family/Babyls Faculty", 8, 1],
+            
+            
             
             
             
