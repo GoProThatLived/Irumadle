@@ -233,7 +233,64 @@
         // Sample Pool of Items
         // Format: [ImageURL, TargetName, NewTextVal, Cat1Val, Cat2Num, Cat3Val, Cat4Delimited, Cat5Num]
         const itemPool = [
+            //These characters are based off the Manga of "Mairimashita Iruma-Kun"; however, some facts like hair color may be taken from the anime for clarification.
+            //Start of Real List
+            //Kalego Side story, some characters may stay in their respecitve arcs, but be listed As here.
+            //Kalego, Balam, Opera
+            //A Younger Profesor Morax can be spotted in Chapter 1 of the side story
+            ["MisfitClass/SullivanIruma.webp", "Kalego's Uncle", "Demon", "Purple", "Unknown", "Cerberus", "Babyl's Staff", 0, 0, "hard"],
+            //Narnia, Kalego's Brother can be spotted being "inaugerated" into the family in Chapter 2
+            //Sullivan is introduced in Chapter 2 with long flowing white hair
+            ["MisfitClass/SullivanIruma.webp", "Dantalion Dali(Former)", "Demoness", "Black", "Unknown", "None/Unknown", "Babyl's Staff", 0, 0, "hard"], //The current Dali's Predecessor who shows up in Henri's flashback as well, the name "Dali" being inherited by the Dantalion member working at Babyls
+            ["MisfitClass/SullivanIruma.webp", "Bottio Yamanda", "Demon", "Yellow", 36, "None/Unknown", "Security Devil", , , "hard"], //A Babyl's third year student from the side story, childhood "friend" of Balam, also the Security Devil of the Sabnock Family
+            //2 members of the Public Morals Battler appear, yet remain unnamed.  I considered adding them as a single character
+            //The captain of the public morals battler appears to have helped root out the corrupted members, there face is not shown.
             
+            //arc 1
+            ["MisfitClass/SullivanIruma.webp", "Sullivan Iruma", "Human", "Blue", 15, "None/Unknown", "Sullivan Family/Misfit Class/Magical Tools Research Battler/Dem-Dols", 5.5, 1, "easy"],
+            ["MisfitClass/SullivanIruma.webp", "Sullivan Samael", "Demon", "Bald", 66, "None/Unknown", "Sullivan Family/The Thirteen Crowns/Babyl's Staff", 9, 0, "easy"], //Official Name is "Sullivan Samael" however it is the sullivan house, adjusted for that.  Sullivan Used to have white hair seen in his mustache but is now bald.
+            ["MisfitClass/SullivanIruma.webp", "Iruma's Father", "Human", "Blue", "Unknown", "None/Unknown", "Suzuki Family/Human World", 0, 1, "easy"],
+            ["MisfitClass/SullivanIruma.webp", "Iruma's Mother", "Human", "Blue", "Unknown", "None/Unknown", "Suzuki Family/Human World", 0, 1, "easy"],
+            ["MisfitClass/SullivanIruma.webp", "Asmodeus Alice", "Demon", "Pink", 16, "None/Unknown", "Misfit Class/Magical Tools Research Battler", 5, 1, "easy"],
+            ["MisfitClass/SullivanIruma.webp", "Dantalion Dali", "Demon", "Brown", 35, "None/Unknown", "Babyl's Staff", 7, 1, "easy"], //Dali is implied to be Kalego's Senior in both Babyl's staff and strength; However we know that Kalego and Balam are the "only two rank 8's" in Babyl's as of the Walter Park arc, so Dali is either ranked closely, if not above Kalego.
+            ["MisfitClass/SullivanIruma.webp", "Eiko", "Demoness", "Yellow", 15, "None/Unknown", "Babyl's Side Characters", 2, 1, "easy"], //Eiko is believed to be rank 1, but possibly rank 2.  She has shown potential in places such as the Harvest festival but did not rank up, which may imply she was already rank 2.
+            ["MisfitClass/SullivanIruma.webp", "Opera", "Demon", "Red", 35, "None/Unknown", "Sullivan Family/Security Devil/Babyl's Staff", 9, 0, "easy"], //While Opera is officially listed as "?" for my sanity, Kalego is estimated to be 34-35 years old and Opera is his Babyl's Senior adding 1 or 2 years.  Opera also officially has an unknown rank, but for wordle rules we will estimate them at a 9.
+            ["MisfitClass/SullivanIruma.webp", "Naberius Kalego", "Demon", "Black", 34, "Cerberus", "Top Dog Battler/Familiar/Babyl's Staff", 8, 0, "easy"],
+            ["MisfitClass/SullivanIruma.webp", "Vino", "Gorgon Snake", "Bald", "Unknown", "None/Unknown", "Familiar/Demon Beast", 0, 1, "medium"],
+            ["MisfitClass/SullivanIruma.webp", "Valac Clara", "Deity", "Green", 15, "Toy-Toy", "Misfit Class/Magical Tools Research Battler", 4, 1, "easy"], //Clara is not confirmed to be a deity, I am just a big fan of the theory, this will change to Demoness if she does not do anything before the end of Iruma's Forced Deporation Arc.
+            ["MisfitClass/SullivanIruma.webp", "Connor and Murf", "Shoes", "Green", "Unknown", "None/Unknown", "Demon Beast", 0, 1, "medium"], //Clara's Sentient Shoes, I am assuming they are animals of some kind.  The right foot's Connor and the left foot's Murf
+            
+            ["MisfitClass/SullivanIruma.webp", "", "", "", , "", "", , , "hard"],
+            
+            
+            //arc 2
+            //arc 3
+            //arc 4
+            //arc 5
+            //arc 6
+            //arc 7
+            //arc 8
+            //arc 9
+            //arc 10
+            //arc 11
+            //arc 12
+            //arc 13
+            //arc 14
+            //arc 15
+            //arc 16
+            //arc 17
+            //arc 18
+            //arc 19
+            //arc 20
+            //arc 21
+            //arc 22
+            //arc 23
+            //arc 24
+            //arc 25
+            //arc 26
+            
+            //End of Real List
+            //start of temp
             // Misfit Class Students (Introduced in Arc 1: Babyls Enrollment Arc)
             ["MisfitClass/SullivanIruma.webp", "Sullivan Iruma", "Human", "Blue", 15, "None/Unknown", "Sullivan Family/Misfit Class/Magical Tools Research Battler", 5.5, 1, "easy"],
             ["MisfitClass/AsmodeusAlice.webp", "Asmodeus Alice", "Demon", "Pink", 16, "None/Unknown", "Misfit Class/Magical Tools Research Battler", 5, 1. "easy"],
@@ -489,17 +546,59 @@
                     cell.classList.add('correct');
                     if (i === 8) {
                         const arcWords = {
-                        1: "Introduction Arc",
-                        2: "Temp Arc 2",
-                        3: "Temp Arc 3"
+                        0: "Kalego Gaiden : Side Story",
+                        1: "Babyls Enrollment : Chapters 1-12",
+                        2: "Execution Cannonball : Chapters 13-17",
+                        3: "First Battler Party : Chapters 18-39",
+                        4: "Dem-dol Kuromu-chan : Chapters 40-45",
+                        5: "Student Council Training : Chapter 46-53",
+                        6: "Royal One Aquisition : Chapter 54-60",
+                        7: "First Term Final Exams : Chapter 61-68",
+                        8: "Walter Park : Chapter 69-88",
+                        9: "End of Terminus : Chapter 89-94",
+                        10: "Special Tutor Training : Chapter 95-101",
+                        11: "Harvest Festival & Post : Chapter 102-146",
+                        12: "Purson Soi, Music Festival, & Post : Chapter 147-183",
+                        13: "Dem-Dol Games : Chapter 184-198",
+                        14: "Dinner of the 13 Crowns : Chapter 199-213",
+                        15: "Second Year : Chapter 214-222",
+                        16: "Heartbreaker & Post : 223-279",
+                        17: "Pre-Deviculum & Deviculum : 280-307",
+                        18: "New 13 Crowns : Chapter 308-318",
+                        19: "Siren Island Beach & Flowers & Love: Chapter 319-327",
+                        20: "Second Battler Party : Chapter 328-350",
+                        21: "Scala Exam & Post : Chapter 351-379",
+                        22: "Clara's Evil Cycle : Chapter 380-387",
+                        23: "Levialon Academy : 388-392",
+                        24: "Goetia Museum & Post : Chapter 393-426",
+                        25: "Azazel Henri & Merize : Chapter 427-443",
+                        26: "Iruma's Forced Deportation : Chapter 444-Current(Oct-11-26)"
+                        // Add more numbers and words here as needed!  
+                        };
+                        cell.textContent = arcWords[guessVal] || guessVal;
+                        }
+                        else if (i === 7) {
+                        const demonRanks = {
+                        0: "None/Unknown",
+                        1: "Aleph(1)",
+                        2: "Bet(2)",
+                        3: "Gimel(3)",
+                        4: "Dalet(4)",
+                        5: "He(5)",
+                        5.5: "Mephisto Approved",
+                        6: "Vav(6)",
+                        7: "Zayin(7)",
+                        8: "Chet(8)",
+                        9: "Tet(9)",
+                        10: "Yodh(10)"
+                        };
                         // Add more numbers and words here as needed!
                             
-                        };
-                cell.textContent = arcWords[guessVal] || guessVal;
-                }
+                cell.textContent = demonRanks[guessVal] || guessVal;
                 } 
                 // Number check with directions indicators (for indices 4 and 7)
-                else if (i === 4 || i === 7) {
+            }
+                else if (i === 4) {
                     cell.classList.add('incorrect');
                     const arrowSpan = document.createElement('span');
                     arrowSpan.className = 'arrow';
@@ -512,42 +611,65 @@
 
                         // 1. Map your numbers to custom words
                         const arcWords = {
+                        0: "Kalego Gaiden : Side Story",
                         1: "Babyls Enrollment : Chapters 1-12",
                         2: "Execution Cannonball : Chapters 13-17",
-                        3: "First Battler Party : Chapters 18-39"
-                        4: "Dem-dol Kuromu-chan : Chapters 40-45"
-                        5: "Student Council Training : Chapter 46-53"
-                        6: "Royal One Aquisition : Chapter 54-60"
-                        7: "First Term Final Exams : Chapter 61-68"
-                        8: "Walter Park : Chapter 69-88"
-                        9: "End of Terminus : Chapter 89-94"
-                        10: "Special Tutor Training : Chapter 95-101"
-                        11: "Harvest Festival & Post : Chapter 102-146"
-                        12: "Purson Soi, Music Festival, & Post : Chapter 147-183"    
-                        13: "Dem-Dol Games : Chapter 184-198"
-                        14: "Dinner of the 13 Crowns : Chapter 199-213" 
-                        15: "Second Year : Chapter 214-222"
-                        16: "Heartbreaker & Post : 223-279"
-                        17: "Pre-Deviculum & Deviculum : 280-307"
-                        18: "New 13 Crowns : Chapter 308-318"
-                        19: "Siren Island Beach & Flowers & Love: Chapter 319-327"
-                        20: "Second Battler Party : Chapter 328-350"
-                        21: "Scala Exam & Post : Chapter 351-379"
-                        22: "Clara's Evil Cycle : Chapter 380-387"
-                        23: "Levialon Academy : 388-392"
-                        24: "Goetia Museum & Post : Chapter 393-426"
-                        25: "Azazel Henri & Merize : Chapter 427-443"
+                        3: "First Battler Party : Chapters 18-39",
+                        4: "Dem-dol Kuromu-chan : Chapters 40-45",
+                        5: "Student Council Training : Chapter 46-53",
+                        6: "Royal One Aquisition : Chapter 54-60",
+                        7: "First Term Final Exams : Chapter 61-68",
+                        8: "Walter Park : Chapter 69-88",
+                        9: "End of Terminus : Chapter 89-94",
+                        10: "Special Tutor Training : Chapter 95-101",
+                        11: "Harvest Festival & Post : Chapter 102-146",
+                        12: "Purson Soi, Music Festival, & Post : Chapter 147-183",
+                        13: "Dem-Dol Games : Chapter 184-198",
+                        14: "Dinner of the 13 Crowns : Chapter 199-213", 
+                        15: "Second Year : Chapter 214-222",
+                        16: "Heartbreaker & Post : 223-279",
+                        17: "Pre-Deviculum & Deviculum : 280-307",
+                        18: "New 13 Crowns : Chapter 308-318",
+                        19: "Siren Island Beach & Flowers & Love: Chapter 319-327",
+                        20: "Second Battler Party : Chapter 328-350",
+                        21: "Scala Exam & Post : Chapter 351-379",
+                        22: "Clara's Evil Cycle : Chapter 380-387",
+                        23: "Levialon Academy : 388-392",
+                        24: "Goetia Museum & Post : Chapter 393-426",
+                        25: "Azazel Henri & Merize : Chapter 427-443",
                         26: "Iruma's Forced Deportation : Chapter 444-Current(Oct-11-26)"
+                        }; 
+                        // 2. Change the cell text to the word (defaults to the number if not listed above)
+                        cell.textContent = arcWords[guessVal] || guessVal;
+
+                        const arrowSpan = document.createElement('span');
+                       arrowSpan.className = 'arrow';
+                        arrowSpan.textContent = guessVal < targetVal ? " ⬆️" : " ⬇️";
+                        cell.appendChild(arrowSpan);
+                        } 
+                        else if (i === 7) {
+                        const demonRanks = {
+                        0: "None/Unknown",
+                        1: "Aleph(1)",
+                        2: "Bet(2)",
+                        3: "Gimel(3)",
+                        4: "Dalet(4)",
+                        5: "He(5)",
+                        5.5: "Mephisto Approved",
+                        6: "Vav(6)",
+                        7: "Zayin(7)",
+                        8: "Chet(8)",
+                        9: "Tet(9)",
+                        10: "Yodh(10)"
                         };
-
-    // 2. Change the cell text to the word (defaults to the number if not listed above)
-    cell.textContent = arcWords[guessVal] || guessVal;
-
-    // 3. The math still runs on the numbers, so the correct arrow is added right next to the word
-    const arrowSpan = document.createElement('span');
-    arrowSpan.className = 'arrow';
-    arrowSpan.textContent = guessVal < targetVal ? " ⬆️" : " ⬇️";
-    cell.appendChild(arrowSpan);
+                        // 2. Change the cell text to the word (defaults to the number if not listed above)
+                        cell.textContent = demonRanks[guessVal] || guessVal;            
+                        const arrowSpan = document.createElement('span');
+                        arrowSpan.className = 'arrow';
+                        arrowSpan.textContent = guessVal < targetVal ? " ⬆️" : " ⬇️";
+                        cell.appendChild(arrowSpan);
+                        };
+                    row.appendChild(cell);
 }
                 // Delimited values split check (for index 6)
                 else if (i === 6) {
