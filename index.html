@@ -420,7 +420,7 @@
                         // Add more numbers and words here as needed!
                             
                 cell.textContent = demonRanks[guessVal] || guessVal;
-                } 
+                        }
                 // Number check with directions indicators (for indices 4 and 7)
             }
                 else if (i === 4) {
@@ -429,9 +429,7 @@
                     arrowSpan.className = 'arrow';
                     arrowSpan.textContent = guessVal < targetVal ? " ⬆️" : " ⬇️";
                     cell.appendChild(arrowSpan);
-                } 
-                    // Custom Word Replacement + Arrow Calculation for Column 8
-                    else if (i === 8) {
+                } else if (i === 8) {
                         cell.classList.add('incorrect');
 
                         // 1. Map your numbers to custom words
@@ -473,6 +471,7 @@
                         cell.appendChild(arrowSpan);
                         } 
                         else if (i === 7) {
+                            cell.classList.add('incorrect');
                         const demonRanks = {
                         0: "None/Unknown",
                         1: "Aleph(1)",
@@ -493,9 +492,8 @@
                         arrowSpan.className = 'arrow';
                         arrowSpan.textContent = guessVal < targetVal ? " ⬆️" : " ⬇️";
                         cell.appendChild(arrowSpan);
-                        };
-                    row.appendChild(cell);
-}
+                        }
+                    
                 // Delimited values split check (for index 6)
                 else if (i === 6) {
                     const guessParts = String(guessVal).split('/');
