@@ -216,7 +216,7 @@
                 <div>Name</div>
                 <div>Race</div>
                 <div>Hair Color</div>
-                <div>Age</div>
+                <div>"Approximate" Age</div>
                 <div>Bloodline Magic</div>
                 <div>Affiliation</div>
                 <div>Rank</div>
@@ -235,10 +235,10 @@
         const itemPool = [
             
             // Misfit Class Students (Introduced in Arc 1: Babyls Enrollment Arc)
-            ["MisfitClass/SullivanIruma.webp", "Sullivan Iruma", "Human", "Blue", 15, "No", "Sullivan Family/Babyls", 5, 1],
-            ["MisfitClass/AsmodeusAlice.webp", "Asmodeus Alice", "Demon", "Pink", 16, "No", "Asmodeus Family/Babyls", 5, 1],
-            ["MisfitClass/ValacClara.webp", "Valac Clara", "Deity", "Green", 15, "Yes", "Valac Family/Babyls", 4, 1],
-            ["MisfitClass/SabnockSabro.webp", "Sabnock Sabro", "Demon", "Yellow", 15, "Yes", "Sabnock Family/Babyls", 4, 1],
+            ["MisfitClass/SullivanIruma.webp", "Sullivan Iruma", "Human", "Blue", 15, "None/Unknown", "Sullivan Family/Misfit Class/Magical Tools Research Battler", 5.5, 1, "easy"],
+            ["MisfitClass/AsmodeusAlice.webp", "Asmodeus Alice", "Demon", "Pink", 16, "None/Unknown", "Misfit Class/Magical Tools Research Battler", 5, 1. "easy"],
+            ["MisfitClass/ValacClara.webp", "Valac Clara", "Demoness", "Green", 15, "Toy-Toy", "Valac Family/Babyls", 4, 1, "easy"],
+            ["MisfitClass/SabnockSabro.webp", "Sabnock Sabro", "Demon", "Yellow", 17, "Weapon Creation/'Metalurgy'", "Misfit Class/Demon King Battler", 4, 1],
             ["MisfitClass/ShaxLied.webp", "Shax Lied", "Demon", "Yellow", 15, "Yes", "Babyls", 4, 1],
             ["MisfitClass/CrocellKeroli.webp", "Crocell Keroli", "Demon", "White", 15, "Yes", "Crocell Family/Babyls/Demdols", 5, 1],
             ["MisfitClass/AndroJazz.webp", "Andro M. Jazz", "Demon", "Black", 15, "Yes", "Andro Family/Babyls", 4, 1],
@@ -512,10 +512,32 @@
 
                         // 1. Map your numbers to custom words
                         const arcWords = {
-                        1: "Introduction Arc",
-                        2: "Temp Arc 2",
-                        3: "Temp Arc 3"
-        // Add more numbers and words here as needed!
+                        1: "Babyls Enrollment : Chapters 1-12",
+                        2: "Execution Cannonball : Chapters 13-17",
+                        3: "First Battler Party : Chapters 18-39"
+                        4: "Dem-dol Kuromu-chan : Chapters 40-45"
+                        5: "Student Council Training : Chapter 46-53"
+                        6: "Royal One Aquisition : Chapter 54-60"
+                        7: "First Term Final Exams : Chapter 61-68"
+                        8: "Walter Park : Chapter 69-88"
+                        9: "End of Terminus : Chapter 89-94"
+                        10: "Special Tutor Training : Chapter 95-101"
+                        11: "Harvest Festival & Post : Chapter 102-146"
+                        12: "Purson Soi, Music Festival, & Post : Chapter 147-183"    
+                        13: "Dem-Dol Games : Chapter 184-198"
+                        14: "Dinner of the 13 Crowns : Chapter 199-213" 
+                        15: "Second Year : Chapter 214-222"
+                        16: "Heartbreaker & Post : 223-279"
+                        17: "Pre-Deviculum & Deviculum : 280-307"
+                        18: "New 13 Crowns : Chapter 308-318"
+                        19: "Siren Island Beach & Flowers & Love: Chapter 319-327"
+                        20: "Second Battler Party : Chapter 328-350"
+                        21: "Scala Exam & Post : Chapter 351-379"
+                        22: "Clara's Evil Cycle : Chapter 380-387"
+                        23: "Levialon Academy : 388-392"
+                        24: "Goetia Museum & Post : Chapter 393-426"
+                        25: "Azazel Henri & Merize : Chapter 427-443"
+                        26: "Iruma's Forced Deportation : Chapter 444-Current(Oct-11-26)"
                         };
 
     // 2. Change the cell text to the word (defaults to the number if not listed above)
