@@ -236,25 +236,97 @@
         const itemPool = [
             //These characters are based off the Manga of "Mairimashita Iruma-Kun"; however, some facts like hair color may be taken from the anime for clarification.
             //Start of Real List
-            
+            //Unknown ages will eventually be replaced with approximate guesses
+            //The six fingers affiliation is a generalization of Baal's group
+            //easy is most normal characters, medium is some harder characters but mainly managa only characters the the heartbreaker 26, and hard is all named characters no matter how niche.  In easy, only easy characters will appear, in medium all characters will appear but easy characters will be more likely and hard characters less likely, in hard all characters appear at the same rate.
             
             //arc 1
-            ["MisfitClass/SullivanIruma.webp", "Sullivan Iruma", "Human", "Blue", 15, "None/Unknown", "Sullivan Family\n/Misfit Class\n/Magical Tools Research Battler\n/Dem-Dols", 5.5, 1, "easy"],
-            ["MisfitClass/SullivanIruma.webp", "Sullivan Samael", "Demon", "Bald", 66, "None/Unknown", "Sullivan Family\n/The Thirteen Crowns\n/Babyl's Staff", 9, 0, "easy"], //Official Name is "Sullivan Samael" however it is the sullivan house, adjusted for that.  Sullivan Used to have white hair seen in his mustache but is now bald.
-            ["MisfitClass/SullivanIruma.webp", "Iruma's Father", "Human", "Blue", "Unknown", "None/Unknown", "Suzuki Family\n/Human World", 0, 1, "easy"],
-            ["MisfitClass/SullivanIruma.webp", "Iruma's Mother", "Human", "Blue", "Unknown", "None/Unknown", "Suzuki Family\n/Human World", 0, 1, "easy"],
-            ["MisfitClass/SullivanIruma.webp", "Asmodeus Alice", "Demon", "Pink", 16, "None/Unknown", "Misfit Class\n/Magical Tools Research Battler", 5, 1, "easy"],
-            ["MisfitClass/SullivanIruma.webp", "Dantalion Dali", "Demon", "Brown", 35, "None/Unknown", "Babyl's Staff", 7, 1, "easy"], //Dali is implied to be Kalego's Senior in both Babyl's staff and strength; However we know that Kalego and Balam are the "only two rank 8's" in Babyl's as of the Walter Park arc, so Dali is either ranked closely, if not above Kalego.
-            ["MisfitClass/SullivanIruma.webp", "Eiko", "Demoness", "Yellow", 15, "None/Unknown", "Babyl's Side Characters", 2, 1, "easy"], //Eiko is believed to be rank 1, but possibly rank 2.  She has shown potential in places such as the Harvest festival but did not rank up, which may imply she was already rank 2.
-            ["MisfitClass/SullivanIruma.webp", "Opera", "Demon", "Red", 35, "None/Unknown", "Sullivan Family\n/Security Devil\n/Babyl's Staff", 9, 0, "easy"], //While Opera is officially listed as "?" for my sanity, Kalego is estimated to be 34-35 years old and Opera is his Babyl's Senior adding 1 or 2 years.  Opera also officially has an unknown rank, but for wordle rules we will estimate them at a 9.
-            ["MisfitClass/SullivanIruma.webp", "Naberius Kalego", "Demon", "Purple", 34, "Cerberus", "Top Dog Battler\n/Familiar\n/Babyl's Staff", 8, 0, "easy"],
-            ["MisfitClass/SullivanIruma.webp", "Vino", "Gorgon Snake", "Bald", "Unknown", "None/Unknown", "Familiar\n/Demon Beast", 0, 1, "medium"],
-            ["MisfitClass/SullivanIruma.webp", "Valac Clara", "Deity", "Green", 15, "Toy-Toy", "Misfit Class\n/Magical Tools Research Battler", 4, 1, "easy"], //Clara is not confirmed to be a deity, I am just a big fan of the theory, this will change to Demoness if she does not do anything before the end of Iruma's Forced Deporation Arc.
-            ["MisfitClass/SullivanIruma.webp", "Connor and Murf", "Shoes", "Green", "Unknown", "None/Unknown", "Demon Beast", 0, 1, "medium"], //Clara's Sentient Shoes, I am assuming they are animals of some kind.  The right foot's Connor and the left foot's Murf
-            
-            
+            ["MisfitClass/SullivanIruma.webp", "Sullivan Iruma", "Human", "Blue", 15, "None/Unknown", "Sullivan Family\n/Misfit Class\n/Magical Tools Research Battler\n/Dem-Dols\n", 5.5, 1, "easy"],
+            ["MisfitClass/SullivanIruma.webp", "Sullivan Samael", "Demon", "None/Bald", 66, "None/Unknown", "Sullivan Family\n/The Thirteen Crowns\n/Babyl's Staff\n", 9, 0, "easy"], //Official Name is "Sullivan Samael" however it is the sullivan house, adjusted for that.  Sullivan Used to have white hair seen in his mustache but is now bald.
+            ["MisfitClass/SullivanIruma.webp", "Iruma's Father", "Human", "Blue", "Unknown", "None/Unknown", "Suzuki Family\n/Human World\n", 0, 1, "easy"],
+            ["MisfitClass/SullivanIruma.webp", "Iruma's Mother", "Human", "Blue", "Unknown", "None/Unknown", "Suzuki Family\n/Human World\n", 0, 1, "easy"],
+            ["MisfitClass/SullivanIruma.webp", "Asmodeus Alice", "Demon", "Pink", 16, "None/Unknown", "Asmodeus Family\n/Misfit Class\n/Magical Tools Research Battler\n", 5, 1, "easy"],
+            ["MisfitClass/SullivanIruma.webp", "Dantalion Dali", "Demon", "Brown", 35, "None/Unknown", "Babyl's Staff\n", 7, 1, "easy"], //Dali is implied to be Kalego's Senior in both Babyl's staff and strength; However we know that Kalego and Balam are the "only two rank 8's" in Babyl's as of the Walter Park arc, so Dali is either ranked closely, if not above Kalego.
+            ["MisfitClass/SullivanIruma.webp", "Eiko", "Demoness", "Yellow", 15, "None/Unknown", "Babyl's Side Characters\n", 2, 1, "easy"], //Eiko is believed to be rank 1, but possibly rank 2.  She has shown potential in places such as the Harvest festival but did not rank up, which may imply she was already rank 2.
+            ["MisfitClass/SullivanIruma.webp", "Opera", "Demon", "Red", 35, "None/Unknown", "Sullivan Family\n/Security Devil\n/Babyl's Staff\n", 9, 0, "easy"], //While Opera is officially listed as "?" for my sanity, Kalego is estimated to be 34-35 years old and Opera is his Babyl's Senior adding 1 or 2 years.  Opera also officially has an unknown rank, but for wordle rules we will estimate them at a 9.
+            ["MisfitClass/SullivanIruma.webp", "Naberius Kalego", "Demon", "Purple", 34, "Cerberus", "Top Dog Battler\n/Familiar\n/Babyl's Staff\n", 8, 0, "easy"],
+            ["MisfitClass/SullivanIruma.webp", "Vino", "Gorgon Snake", "None/Bald", "Unknown", "None/Unknown", "Familiar\n/Demon Beast\n", 0, 1, "medium"],
+            ["MisfitClass/SullivanIruma.webp", "Valac Clara", "Deity", "Green", 15, "Toy-Toy", "Misfit Class\n/Magical Tools Research Battler\n", 4, 1, "easy"], //Clara is not confirmed to be a deity, I am just a big fan of the theory, this will change to Demoness if she does not do anything before the end of Iruma's Forced Deporation Arc.
+            ["MisfitClass/SullivanIruma.webp", "Connor and Murf", "Shoes", "Green", "Unknown", "None/Unknown", "Demon Beast\n", 0, 1, "medium"], //Clara's Sentient Shoes, I am assuming they are animals of some kind.  The right foot's Connor and the left foot's Murf
+            ["MisfitClass/SullivanIruma.webp", "Camu Camu", "Demon", "Purple", "Unknown", "None/Unknown", "Babyl's Staff\n", 0, 1, "easy"], //While he may not have hair visible, purple serves a good representation/guess
+            ["MisfitClass/SullivanIruma.webp", "Andro M. Jazz", "Demon", "Black", 16, "Pit", "Misfit Class\n/New Magic Development Battler\n", 4, 1, "easy"], 
+            ["MisfitClass/SullivanIruma.webp", "Shax Lied", "Demon", "Yellow", 15, "Controller", "Misfit Class\n/Gaming Battler\n", 4, 1, "easy"], 
+            ["MisfitClass/SullivanIruma.webp", "Ix Elizabetta", "Demoness", "Yellow", 17, "Full Love Gauge", "Misfit Class\n/Chorus Battler\n", 4, 1, "easy"], 
+            ["MisfitClass/SullivanIruma.webp", "Garp Goemon", "Demon", "Silver", 17, "Wind Blade", "Misfit Class\n/Female Body Research Battler(Self Proclaimed)\n", 4, 1, "easy"], 
+            ["MisfitClass/SullivanIruma.webp", "Caim Camui", "Demon", "Brown", 17, "Kinship(Translation)", "Misfit Class\n/", 4, 1, "easy"], 
+            ["MisfitClass/SullivanIruma.webp", "Agares Picero", "Demon", "Orange", 15, "My Area", "Misfit Class\n", 4, 1, "easy"], 
+            ["MisfitClass/SullivanIruma.webp", "Crocell Keroli(Kuromu)", "Demoness", "White", 16, "Ice Façade", "Misfit Class\n/Dem-Dols\n", 4, 1, "easy"], 
+            ["MisfitClass/SullivanIruma.webp", "Allocer Schneider", "Demon", "Yellow", 16, "None/Unknown", "Misfit Class\n", 4, 1, "easy"], 
+            ["MisfitClass/SullivanIruma.webp", "Sabnock Sabro", "Demon", "Yellow", 17, "Metallurgy(Weapon Creation)", "Misfit Class\n/Demon King Battler\n", 4, 1, "easy"], 
+            ["MisfitClass/SullivanIruma.webp", "Ohma", "Kelpie", "Green", "Unknown", "None/Unknown", "Familar\n/Demon Beast\n", 0, 1, "medium"], 
+            ["MisfitClass/SullivanIruma.webp", "Guardian of Cutthroat Valley's Child", "Bird Demon Beast", "White", "Unknown", "None/Unknown", "Demon Beast\n/Babyl's Side Characters\n", 0, 1, "medium"],
+            ["MisfitClass/SullivanIruma.webp", "Guardian of Cutthroat Valley", "Bird Demon Beast", "Black", "Unknown", "None/Unknown", "Demon Beast\n/Babyl's Side Characters\n", 0, 1, "medium"],
+            //Bottio Yamada is seen in this chapter without a face, but has been introduced in the Kalego Gaiden Side Story
+            //A sick sister that could be interpretted as Sabnock Silvia can be seen in Sabro's monologue, we will assume this is not her since the "reason" was fake, same for his brother
+            ["MisfitClass/SullivanIruma.webp", "Sabnock Sabzan", "Demon", "Yellow", 42, "Metallurgy(Weapon Creation)", "None\n", 0, 1, "medium"], //Shown to a classmate of Azazel Henri, estimated to be 42 on the wiki, rank unknown but may take an estimate later
+            ["MisfitClass/SullivanIruma.webp", "The Rank Owl", "Bird Demon Beast", "White", "Unknown", "None/Unknown", "Demon Beast\n/Babyl's Staff\n", 0, 1, "hard"],
+            //interlud of nishi, nonaka, kawasaki, nishiyama
+            ["MisfitClass/SullivanIruma.webp", "Purson Soi", "Demon", "Purple", 15, "Detection Warding", "Misfit Class\n/Music\n", 4, 1, "easy"], //Purson shows up in chapter 8 of the manga as a named character, thus gets included in arc 1, musically inclined will include characters like the judges and poro from the music festival.
+            ["MisfitClass/SullivanIruma.webp", "Alikred(Ali)", "Soul Fragment/Projection?", "Purple", "Unknown", "None/Unknown", "Demon King\n/Music\n/Military\n", 10, 1, "easy"], //shows up as a monster from the ring of gluttony
+            ["MisfitClass/SullivanIruma.webp", "Derkila", "Demon", "Purple", "Unknown", "None\Unknown", "Demon King\n/Music\n/Military\n", 10, 1, "easy"],//including them as separate characters as the race will be enough to determine them and we do not have confirmation.
+            ["MisfitClass/SullivanIruma.webp", "Stolas Suzy", "Demoness", "Yellow", 28, "Magic Flute", "Babyl's Staff\n", 7, 1, "easy"], //Magic flute was the weapon she used in the heartbreaker, not confirmed bloodline ability but easily could be due to it's unique nature.
+            ["MisfitClass/SullivanIruma.webp", "Gusion Sunny Grave", "Demon", "Black", 19, "None/Unknown", "Babyl's Student Council\n", 0, 1, "medium"],
+            ["MisfitClass/SullivanIruma.webp", "Astaroth Smoke", "Demoness", "Pink", 16, "None/Unknown", "Babyl's Student Council\n", 0, 1, "medium"],
+            ["MisfitClass/SullivanIruma.webp", "Azazel Ameri", "Demon-Human Hybrid", "Red", 17, "Romanticist", "Babyl's Student Council\n/Demon Border Patrol\n", 6, 1, "easy"],
+            ["MisfitClass/SullivanIruma.webp", "Zagan Johnny Western", "Demon", "Mixed", 17, "None/Unknown", "Babyl's Student Council\n", 0, 1, "medium"],
+            ["MisfitClass/SullivanIruma.webp", "Kimaris Quichelight", "Demon", "Yellow", 17, "None/Unknown", "Babyl's Student Council\n", 0, 1, "medium"],
+            ["MisfitClass/SullivanIruma.webp", "Hoshino Rin", "Human", "White", 16, "None/Unknown", "First Love Memories\n", 0, 1, "hard"],
+            ["MisfitClass/SullivanIruma.webp", "Aosora Kakeru", "Human", "Black", 16, "None/Unknown", "First Love Memories\n", 0, 1, "hard"],
             //arc 2
+            ["MisfitClass/SullivanIruma.webp", "Cayman", "Demon Beast", "None/Bald", "Unknown", "None/Unknown", "Demon Beast\n", 0, 2, "hard"],
+            ["MisfitClass/SullivanIruma.webp", "Cursed Puppet Doll", "Equipment", "Yellow", 0, "None/Unknown", "Demonic Tool\n", 0, 2, "hard"],
+            ["MisfitClass/SullivanIruma.webp", "Raim", "Demoness", "Purple", 41, "Ero Scope", "Succubus Battler\n/Babyl's Staff\n", 7, 2, "easy"],
             //arc 3
+            ["MisfitClass/SullivanIruma.webp", "Haruno", "Demoness", "Pink", 15, "None/Unknown", "Babyl's Side Characters\n", 1, 3, "medium"],
+            ["MisfitClass/SullivanIruma.webp", "Konatsu", "Demoness", "Yellow", 15, "None/Unknown", "Babyl's Side Characters\n", 1, 3, "hard"],
+            ["MisfitClass/SullivanIruma.webp", "Azuki", "Demoness", "Blue", 16, "None/Unknown", "Babyl's Side Characters\n", 1, 3, "hard"],
+            ["MisfitClass/SullivanIruma.webp", "Dosanko", "Demoness", "None/Bald", 18, "None/Unknown", "Babyl's Side Characters\n/Succubus Battler\n", 1, 3, "easy"],
+            ["MisfitClass/SullivanIruma.webp", "Amy Kirwo", "Demon", "Green", 17, "Barrier", "The Six Fingers\n/Magical Tools Research Battler\n/Garden of Delinquents\n", 2, 3, "easy"], //Kiriwo has turquoise hair, but I don't wan't to be that specific, so I chose to see it as more green to separate him from iruma
+            ["MisfitClass/SullivanIruma.webp", "Gabu-ko", "Equipment", "None/Bald", "Unknown", "None/Unknown", "The Six Fingers\n/Magical Tools Research Battler\n", 0, 3, "hard"],
+            ["MisfitClass/SullivanIruma.webp", "Bars Robin", "Demon", "Green", 22, "One Hit Bullseye", "Barbatos Clan\n/Babyl's Staff\n", 7, 3, "easy"],
+            ["MisfitClass/SullivanIruma.webp", "Boss", "Falfal", "Green", "Unknown", "None/Unknown", "Familar\n/Demon Beast\n", , , "easy"],
+            ["MisfitClass/SullivanIruma.webp", "Marbas March", "Demon", "Black", 28, "Perfect Understanding", "Babyl's Staff", 7, 3, "easy"],
+            ["MisfitClass/SullivanIruma.webp", "Behemolt", "Demon", "None/Bald", "Unknown", "All Delicious", "The Thirteen Crowns\n/The Six Fingers\n", 9, 3, "easy"],//not a confirmed rank 9, but it is a reasonable assumption
+            ["MisfitClass/SullivanIruma.webp", "Belzebuth", "Demon", "Yellow", "Unknown", "None/Unknown", "The Thirteen Crowns\n/Extraordinary Assistant\n", 9, 3, "easy"],
+            ["MisfitClass/SullivanIruma.webp", "Astaroh", "Demon", "Black", "Unknown", "None/Unknown", "The Thirteen Crowns", 9, 3, "easy"], //We can assume his bloodline has something to do with clairovoyance, but I will not add that now
+            ["MisfitClass/SullivanIruma.webp", "Glasya", "Demon", "Unknown", "Unknown", "None/Unknown", "The Thirteen Crowns\n", 9, 3, "hard"], //No face ever shown, removed from the 13 crowns. They go in hard mode
+            ["MisfitClass/SullivanIruma.webp", "Amaymon", "Demon", "Blue", "Unknown", "None/Unknown", "The Thirteen Crowns\n/Military\n", 9, 3, "easy"],
+            ["MisfitClass/SullivanIruma.webp", "Paimon", "Demon", "White", "Unknown", "None/Unknown", "The Thirteen Crowns\n", 9, 3, "easy"],
+            ["MisfitClass/SullivanIruma.webp", "Azazel Henry", "Demon", "Red", 42, "Romanticist", "The Thirteen Crowns\n/Demon Border Patrol\n", 9, 3, "easy"],
+            ["MisfitClass/SullivanIruma.webp", "Lord Belial", "Demon", "White", 66, "None/Unknown", "The Thirteen Crowns\n/Jackapo Subtyrannic Institute\n", 9, 3, "easy"], //rough estimate of age
+            ["MisfitClass/SullivanIruma.webp", "Leviathan Levi", "Demoness", "Blue", 64, "Drowning in Love", "The Thirteen Crowns\n/Levialon Academy", 9, 3, "easy"], //Lady levi is 2 years younger
+            ["MisfitClass/SullivanIruma.webp", "Baal", "Demon", "Yellow", 35, "Metallurgy(Weapon Creation)", "The Thirteen Crowns\n/The Six Fingers\n/Magical Tools Research Battler\n", 9, 3, "easy"], //35 is a rough estimate for age, putting him a little below his brother
+            //Clara mentions her family but I will wait until they physically show up
+            ["MisfitClass/SullivanIruma.webp", "David", "Demon", "Gray", 50, "None/Unknown", "Asmodeus Family\n", 0, 3, "medium"],
+            ["MisfitClass/SullivanIruma.webp", "Asmodeus Amuryllis", "Demoness", "Pink", 35, "None/Unknown", "Asmodeus Family\n/The Thirteen Crowns\n", 9, 3, "easy"],//age estimate
+            ["MisfitClass/SullivanIruma.webp", "Bathin Baraki", "Demon", "Black", 18, "None/Unknown", "Broadcasting Battler\n", 5, 3, "hard"],
+            ["MisfitClass/SullivanIruma.webp", "Garu", "Demon", "Purple", 17, "None/Unknown", "New Magic Development Battler\n", 0, 3, "medium"],
+            ["MisfitClass/SullivanIruma.webp", "Murmur Tsumuru", "Demon", "Red", 26, "Mood Ring", "Babyl's Staff\n", 7, 3, "easy"],
+            ["MisfitClass/SullivanIruma.webp", "Ipos Ichou", "Demon", "Yellow", 27, "Round Up", "Babyl's Staff\n", 7, 3, "easy"],
+            ["MisfitClass/SullivanIruma.webp", "Bluer Blushenko", "Demon", "Black", 38, "Healing Factor", "Babyl's Staff", 7, 3, "easy"],
+            ["MisfitClass/SullivanIruma.webp", "Morax Momonoki", "Demoness", "Blue", 25, "Master of All Trades", "Babyl's Staff", 7, 3, "easy"],
+            ["MisfitClass/SullivanIruma.webp", "Magic Paper Soldiers", "Equipment", "Black", 0, "None/Unknown", "Demonic Tool\n", 0, 3, "hard"],
+            ["MisfitClass/SullivanIruma.webp", "Kiriwo's Mother", "Demoness", "Green", 35, "Barrier", "None\n", 0, 3, "hard"],
+            ["MisfitClass/SullivanIruma.webp", "Nagi", "Demoness", "Blue", 10, "None/Unknown", "Garden of Delinquents\n", 0, 3, "medium"],
+            ["MisfitClass/SullivanIruma.webp", "Valac Sin Sin", "Deity", "Green", 2, "Toy-Toy", "None\n", 0, 3, "medium"],
+            ["MisfitClass/SullivanIruma.webp", "Valac Ran Ran", "Deity", "Green", 2, "Toy-Toy", "None\n", 0, 3, "medium"],
+            ["MisfitClass/SullivanIruma.webp", "Valac Konchie", "Deity", "Green ", 9, "Toy-Toy", "None\n", 0, 3, "medium"],//Sorry for the duplicate nature, but they are twins
+            ["MisfitClass/SullivanIruma.webp", "Valac Keebow", "Deity", "Green", 9, "Toy-Toy", "None\n", 0, 3, "medium"],
+            ["MisfitClass/SullivanIruma.webp", "Mrs. Valac(Mommy)", "Deity", "Green", 33, "Toy-Toy", "None\n", 0, 3, "medium"], //age estimate
+            ["MisfitClass/SullivanIruma.webp", "Mr. Valax", "Demon", "Unknown", "Unknown", "None/Unknown", "None\n", 0, 3, "hard"],
+            ["MisfitClass/SullivanIruma.webp", "Sabnock Silvia", "Demoness", "Mixed", 13, "Metallurgy(Weapon Creation)", "Magical Tools Research Battler\n/Art Battler\n", 3, 3, "easy"],//After the second battler party arc, silvia's hair appears to be permanently mixed from the influence of Galna on here evil cycle.
+            ["MisfitClass/SullivanIruma.webp", "Walb", "Demon", "Brown", 16, "None/Unknown", "Broadcasting Battler", 2, 3, "hard"], //As the broadcasting battler wont he special award, everyone ranked up, assuming he did not have a rank of 0, this would make him at least rank 2
+            
             //arc 4
             //arc 5
             //arc 6
