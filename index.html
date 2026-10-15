@@ -147,18 +147,18 @@
         }
 
         .cell.image-cell {
-        grid-column: span 1;
-        aspect-ratio: auto; /* Dissolves the 1:1 squishing constraint */
-        height: 100%;       /* Ensures it fills the row height */
-    }
+            grid-column: span 1;
+            aspect-ratio: auto; /* Dissolves the 1:1 squishing constraint */
+            height: 100%;       /* Ensures it fills the row height */
+        }
 
         .cell img {
-        width: 100%;
-        height: 100%;
-    /* Prevents the image from distorting while filling the cell completely */
-        object-fit: cover; 
-        border-radius: 2px;
-}
+            width: 100%;
+            height: 100%;
+            /* Prevents the image from distorting while filling the cell completely */
+            object-fit: cover; 
+            border-radius: 2px;
+        }
 
         .cell.correct {
             background-color: var(--color-correct);
@@ -203,11 +203,10 @@
             <div id="dropdownMenu" class="dropdown-menu"></div>
         </div>
 
-      <!-- Update this in your HTML layout -->
-    <div id="winMessage" class="win-message">
-        You guessed correctly, today's character was <span id="correctCharacterName"></span>!
-    </div>
-
+        <!-- Update this in your HTML layout -->
+        <div id="winMessage" class="win-message">
+            You guessed correctly, today's character was <span id="correctCharacterName"></span>!
+        </div>
 
         <!-- Guess Grid Area -->
         <div>
@@ -231,6 +230,29 @@
     </div>
 
     <script>
+        // Helper function to remove "easy", "medium", or "hard" from text cells
+        function cleanCellText(text) {
+            if (!text) return "";
+            return String(text).replace(/\b(easy|medium|hard)\b/gi, '').trim();
+        }
+
+        // Framework function to process and submit a character guess
+        function submitGuess(selectedCharacter) {
+            const row = document.createElement('div');
+            row.className = 'guess-row';
+
+            // Example of how attributes are mapped using cleanCellText:
+            // const nameCell = document.createElement('div');
+            // nameCell.className = 'cell';
+            // nameCell.textContent = cleanCellText(selectedCharacter.name);
+            // row.appendChild(nameCell);
+
+            // Places the most recent guess row at the top of the grid layout
+            document.getElementById('guessGrid').prepend(row);
+        }
+    </script>
+</body>
+</html>
         // Sample Pool of Items
         // Format: [ImageURL, TargetName, NewTextVal, Cat1Val, Cat2Num, Cat3Val, Cat4Delimited, Cat5Num]
         const itemPool = [
